@@ -45,6 +45,21 @@ const calendarResult = document.querySelector('#calendar-result');
 const calendarError = document.querySelector('#calendar-error');
 const calendarPrev = document.querySelector('#calendar-prev');
 const calendarNext = document.querySelector('#calendar-next');
+const calendarDemo = document.querySelector('#calendar-demo');
+const calendarDemoToggle = document.querySelector('#calendar-demo-toggle');
+const calendarDemoMobileQuery = window.matchMedia('(max-width: 760px)');
+function setCalendarDemoExpanded(expanded) {
+  calendarDemo.dataset.expanded = String(expanded);
+  calendarDemoToggle.setAttribute('aria-expanded', String(expanded));
+}
+function syncCalendarDemoDisclosure() {
+  setCalendarDemoExpanded(!calendarDemoMobileQuery.matches);
+}
+calendarDemoToggle.addEventListener('click', () => {
+  setCalendarDemoExpanded(calendarDemoToggle.getAttribute('aria-expanded') !== 'true');
+});
+syncCalendarDemoDisclosure();
+calendarDemoMobileQuery.addEventListener('change', syncCalendarDemoDisclosure);
 const weeklyExamples = {
   Lienzo: [{day:1, start:14, hours:1, kind:'regular'}],
   Boceto: [{day:1, start:18, hours:1, kind:'estelar'}, {day:3, start:14, hours:1, kind:'regular'}],

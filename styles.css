@@ -195,9 +195,43 @@
   max-width: 540px;
   line-height: 1.7;
 }
+.calendar-demo-toggle{display:none}
 @media (max-width: 760px) {
   .calendar-demo { margin-top: 32px; }
-  .calendar-demo-header { padding: 24px 0 20px; }
+  .calendar-demo-header { padding: 24px 0 20px; flex-direction:column; gap:18px; }
   .calendar-demo-title { font-size: 1.35rem; }
   .calendar-demo-subtitle { font-size: .875rem; }
+  .calendar-demo-toggle{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 20px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);font-size:.875rem;font-weight:600;line-height:1.3}
+  .calendar-demo-toggle:hover{background:var(--olive-dark);border-color:var(--olive-dark)}
+  .calendar-demo[data-expanded=false] .calendar-body,
+  .calendar-demo[data-expanded=false] .calendar-disclaimer{display:none!important}
 }
+
+/* Tallerista Fundador: simplified hierarchy */
+.founder-intro .section-intro{max-width:520px}
+.founder-benefits .discount p{font-size:1.05rem;line-height:1.55}
+.founder-benefits .discount p strong{font-weight:600}
+.founder-cta{margin-top:24px}
+.opening-guarantee .founder-deadline{margin-top:18px;font-size:.875rem;font-weight:600;color:#d8d9d2;max-width:620px}
+@media(max-width:760px){
+  .founder-intro .section-intro{margin-top:20px}
+  .founder-benefits .discount{padding-bottom:20px}
+  .founder-benefits .discount p{font-size:1rem}
+  .founder-benefits li{padding-top:18px}
+  .founder-cta{width:100%;margin-top:20px}
+  .opening-guarantee .founder-deadline{font-size:.8125rem;margin-top:16px}
+}
+
+/* Plan hours guide before pricing cards */
+.plan-hours-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;max-width:680px;border-block:1px solid var(--line);padding:16px 0;margin:4px 0 30px}
+.plan-hours-guide>div{display:grid;grid-template-columns:88px minmax(0,1fr);column-gap:18px;row-gap:4px;align-items:start}
+.plan-hours-guide strong{grid-row:span 2;font-size:.75rem;letter-spacing:.12em;line-height:1.6;color:var(--olive-dark)}
+.plan-hours-guide span{font-size:.875rem;color:var(--muted);line-height:1.55}
+@media(max-width:760px){
+  .plan-hours-guide{grid-template-columns:1fr;gap:12px;padding:14px 0;margin:0 0 24px}
+  .plan-hours-guide>div{grid-template-columns:82px minmax(0,1fr);column-gap:14px}
+  .plan-hours-guide strong{font-size:.7rem}
+}
+
+/* Compact early location cue */
+.space-location{display:inline-block;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.875rem;font-weight:600;line-height:1.5;color:var(--olive-dark)}
