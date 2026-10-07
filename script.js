@@ -25,13 +25,6 @@ function updatePlans(){
 rates.forEach(button=>button.addEventListener('click',()=>{selectedRate=button.dataset.rate;updatePlans();}));
 updatePlans();
 
-const menu=document.querySelector('.menu-toggle');
-const nav=document.getElementById('main-nav');
-function setMenu(open){menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');nav.dataset.open=String(open);}
-menu.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
-nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenu(false)));
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){setMenu(false);menu.focus();}});
-
 const mobileContact=document.querySelector('.mobile-contact');
 if('IntersectionObserver' in window){
   const observer=new IntersectionObserver(entries=>{mobileContact.dataset.visible=String(!entries[0].isIntersecting);},{threshold:0.12});
@@ -188,8 +181,7 @@ rows.forEach(row => row.addEventListener('click', () => {
   calendarPlan = row.dataset;
   renderExampleMonth();
   const demo = document.querySelector('#calendar-demo');
-  demo.open = true;
-  demo.querySelector('summary').focus({preventScroll:true});
+  document.querySelector('#calendar-section-title').focus({preventScroll:true});
   demo.scrollIntoView({block:'start', behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
 }));
 rates.forEach(button => button.addEventListener('click', renderExampleMonth));

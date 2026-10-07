@@ -118,3 +118,25 @@
 }
 
 .calendar-demo{border-radius:var(--radius);scroll-margin-top:12px}.calendar-demo .link{display:inline-block;font-weight:600;font-size:.875rem;border-bottom:1px solid currentColor;padding-block:6px;margin-top:20px}.calendar-demo .eyebrow{margin-bottom:0}.calendar-config .eyebrow{margin-bottom:14px}
+
+/* Calendar stays visible; only its month table scrolls horizontally. */
+.calendar-section-heading{padding:26px 28px;border-bottom:1px solid var(--line)}
+.calendar-section-heading h3{font-size:1.2rem;line-height:1.4;letter-spacing:-.025em;font-weight:600}
+.calendar-section-heading p{margin-top:8px;font-size:.875rem;color:var(--muted)}
+.table-responsive{max-width:100%;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.calendar-scroll-hint{display:none}
+.plan .plan-link{min-height:64px;text-align:center;padding-inline:12px;overflow-wrap:normal}
+@media(max-width:768px){
+  html{scroll-padding-top:140px}
+  .site-header .nav-wrap{flex-wrap:wrap;gap:8px;min-width:0;padding-block:12px 0}
+  .site-header .nav-wrap #main-nav{display:flex;position:static;order:3;flex:0 0 100%;width:100%;max-width:100%;min-width:0;flex-wrap:nowrap;justify-content:flex-start;gap:24px;overflow-x:auto;white-space:nowrap;border-top:1px solid var(--line);padding:5px 0;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .site-header #main-nav a{flex:0 0 auto;min-height:44px;padding:10px 4px;font-size:.875rem;white-space:nowrap}
+  .plan a.plan-link{width:100%;min-width:0;min-height:64px;align-self:stretch}
+  .calendar-section-heading{padding:20px 16px}
+  .calendar-scroll-hint{display:block;margin:0 0 10px;font-size:.75rem;color:var(--olive-dark)}
+  .table-responsive .month-grid{min-width:560px}
+  .table-responsive .calendar-times{display:block;font-size:.6875rem}
+  .table-responsive .calendar-duration{display:flex;gap:4px;font-size:.6875rem}
+  .table-responsive .calendar-cell-kind{font-size:inherit}
+  .table-responsive .calendar-cell-kind:before{content:'· ';white-space:pre}
+}
