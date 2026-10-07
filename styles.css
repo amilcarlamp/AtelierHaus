@@ -245,8 +245,6 @@
   .plan-hours-guide strong{font-size:.7rem}
 }
 
-/* Compact early location cue */
-.space-location{display:inline-block;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.875rem;font-weight:600;line-height:1.5;color:var(--olive-dark)}
 .footer-slogan{font-size:1rem;font-weight:600;line-height:1.45;color:var(--ink)}
 
 /* Tallerista Fundador: urgency and action emphasis */
@@ -273,3 +271,8 @@
 .session-bar span:last-child{background:#e7e9df;color:var(--ink);border-left:1px solid #aeb4a5}
 .session-bar b{font-size:1.35rem;font-weight:700}
 @media(max-width:350px){.session-bar span:last-child{border-top:1px solid #aeb4a5;border-left:0}}
+
+/* Align Sunday details with the first weekday schedule row. */
+.schedule{align-items:start}
+.schedule>p{margin-top:33px}
+@media(max-width:760px){.schedule>p{margin-top:0}}
