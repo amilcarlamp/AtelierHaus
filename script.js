@@ -51,6 +51,7 @@ const calendarDemoMobileQuery = window.matchMedia('(max-width: 760px)');
 function setCalendarDemoExpanded(expanded) {
   calendarDemo.dataset.expanded = String(expanded);
   calendarDemoToggle.setAttribute('aria-expanded', String(expanded));
+  calendarDemoToggle.textContent = expanded ? 'Cerrar simulador' : 'Simular mi mes';
 }
 function syncCalendarDemoDisclosure() {
   setCalendarDemoExpanded(!calendarDemoMobileQuery.matches);
@@ -202,10 +203,9 @@ rows.forEach(row => row.addEventListener('click', () => {
   rows.forEach(button => button.setAttribute('aria-pressed', String(button === row)));
   calendarPlan = row.dataset;
   renderExampleMonth();
-  const demo = document.querySelector('#calendar-demo');
-  demo.open = true;
-  demo.querySelector('summary').focus({preventScroll:true});
-  demo.scrollIntoView({block:'start', behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  setCalendarDemoExpanded(true);
+  calendarDemo.focus({preventScroll:true});
+  calendarDemo.scrollIntoView({block:'start', behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
 }));
 rates.forEach(button => button.addEventListener('click', renderExampleMonth));
 calendarMonth.addEventListener('input', renderExampleMonth);

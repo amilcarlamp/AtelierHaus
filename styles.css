@@ -247,22 +247,55 @@
 
 .footer-slogan{font-size:1rem;font-weight:600;line-height:1.45;color:var(--ink)}
 
-/* Tallerista Fundador: urgency and action emphasis */
+/* Tallerista Fundador: benefit, conditions and date hierarchy. */
 .founders{background:var(--ink);color:var(--paper);border-block:0}
+.founders .founders-grid{align-items:start}
 .founders .founder-intro>.eyebrow{display:inline-flex;align-items:center;margin-bottom:24px;padding:8px 13px;background:#a2672f;color:var(--white);border-radius:999px}
 .founders .section-intro{color:#d5d7d0}
-.founders .discount{border-bottom-color:#3b4037}
+.founders .discount{align-items:flex-end;gap:32px;padding:20px 0 28px;border-block:1px solid #3b4037}
+.founders .discount>span{font-size:7.7rem;color:var(--paper)}
+.founders .discount-copy{padding-bottom:7px}
+.founders .discount-kicker,.founders .guarantee-kicker,.founders .founder-dates p>span{display:block;font-size:.7rem;font-weight:700;letter-spacing:.12em;line-height:1.45}
+.founders .discount-kicker{margin-bottom:9px;color:#d7aa72}
+.founders .discount-copy p{max-width:250px;color:var(--paper);font-size:1.1rem;line-height:1.45}
 .founders .discount p,.founders .founder-benefits li span{color:#cfd2c9}
+.founders .founder-benefits ul{padding-top:7px}
+.founders .founder-benefits li:first-child{padding-left:18px;border-left:3px solid #a2672f}
 .founders .founder-benefits li+li{border-top:1px solid #30342c}
 .founders .founder-benefits li strong{color:var(--paper)}
-.founders .opening-guarantee{background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 20px 45px rgba(0,0,0,.24)}
+.founders .opening-guarantee{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:30px;margin-top:48px;padding:30px 34px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 20px 45px rgba(0,0,0,.24)}
+.founders .guarantee-content{min-width:0}
+.founders .guarantee-kicker{margin-bottom:8px;color:var(--olive-dark)}
 .founders .opening-guarantee p{color:var(--muted)}
-.founders .guarantee-mark{color:#a2672f}
+.founders .opening-guarantee h3{margin-bottom:8px}
+.founders .guarantee-mark{font-size:3.2rem;min-width:118px;color:#a2672f}
 .founders .guarantee-mark span{color:var(--olive-dark)}
-.founders .opening-guarantee .founder-deadline{margin-top:18px;padding-left:14px;border-left:4px solid #a2672f;color:#713d29;font-size:.9rem;font-weight:700;line-height:1.55}
+.founders .founder-dates{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);gap:22px;margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.founders .opening-guarantee .founder-deadline,.founders .founder-opening-date{margin:0;padding-left:14px;line-height:1.55}
+.founders .opening-guarantee .founder-deadline{border-left:4px solid #a2672f;color:#713d29;font-size:.9rem;font-weight:700}
+.founders .founder-opening-date{border-left:2px solid #8b9480}
+.founders .founder-dates p>span{margin-bottom:5px;color:var(--muted)}
+.founders .founder-opening-date strong{display:block;color:var(--ink);font-size:1rem;font-weight:700}
 .founders .founder-cta{min-width:270px;min-height:58px;background:var(--ink);border-color:var(--ink);color:var(--paper);font-size:.95rem;font-weight:700}
+.founders .guarantee-content>.founder-cta{margin-top:24px}
 .founders .founder-cta:hover{background:var(--olive-dark);border-color:var(--olive-dark);color:var(--paper)}
-@media(max-width:760px){.founders .founder-intro>.eyebrow{margin-bottom:20px}.founders .founder-cta{width:100%;min-width:0}}
+@media(max-width:760px){
+  .founders .founders-grid{gap:30px}
+  .founders .founder-intro>.eyebrow{margin-bottom:20px}
+  .founders .discount{gap:18px;padding:18px 0 24px}
+  .founders .discount>span{font-size:6.2rem}
+  .founders .discount-copy{padding-bottom:4px}
+  .founders .discount-copy p{font-size:1rem}
+  .founders .opening-guarantee{grid-template-columns:1fr;gap:16px;margin-top:34px;padding:24px 20px}
+  .founders .guarantee-mark{font-size:2.8rem;min-width:0}
+  .founders .founder-dates{grid-template-columns:1fr;gap:17px}
+  .founders .founder-cta{width:100%;min-width:0}
+}
+@media(max-width:350px){
+  .founders .discount{gap:14px}
+  .founders .discount>span{font-size:5.5rem}
+  .founders .discount small{font-size:2.35rem}
+}
 
 /* Session timing: clearer 50/10 visual split */
 .session-bar{overflow:hidden;border:1px solid #aeb4a5;border-radius:8px;background:#e7e9df;box-shadow:0 12px 28px rgba(9,9,9,.12)}
@@ -276,3 +309,261 @@
 .schedule{align-items:start}
 .schedule>p{margin-top:33px}
 @media(max-width:760px){.schedule>p{margin-top:0}}
+
+/* Plan cards: clearer hierarchy while preserving the existing layout. */
+.plan{height:100%;padding:30px 22px 24px}
+.plan-name{margin-bottom:18px;color:var(--ink);font-size:.8125rem;font-weight:700;letter-spacing:.08em}
+.plan h3{font-size:2.15rem;line-height:1.08;letter-spacing:-.05em;font-weight:500}
+.plan h3 small{margin-top:7px;color:var(--olive-dark);font-size:.8125rem;font-weight:600}
+.plan-description{min-height:72px;margin-top:20px;color:var(--muted);font-size:.875rem;line-height:1.6}
+.plan-mix{min-height:86px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:.8125rem;color:var(--olive-dark)}
+.plan-mix small{font-size:.75rem}
+.plan-price{margin-top:auto;padding-top:22px;border-top:1px solid var(--line);font-size:2.35rem;font-weight:600;line-height:1.15}
+.plan-price small{font-size:.8125rem;font-weight:500}
+.plan .button{margin-top:20px}
+.js .calendar-plan-button{margin-top:12px}
+
+@media(max-width:1120px){
+  .plan{padding:27px 16px 22px}
+  .plan h3{font-size:1.85rem}
+  .plan-price{font-size:2rem}
+}
+@media(max-width:960px){
+  .plan{padding:28px 22px 23px}
+  .plan h3{font-size:2.05rem}
+  .plan-price{font-size:2.3rem}
+}
+@media(max-width:760px){
+  .plans-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+  .plan{padding:26px 22px 24px}
+  .plan-name{margin-bottom:14px}
+  .plan h3{font-size:2rem}
+  .plan-description{min-height:0;margin-top:16px;font-size:.9375rem}
+  .plan-mix{min-height:0;margin-top:16px;padding-top:14px;font-size:.875rem}
+  .plan-mix small{font-size:.8125rem}
+  .plan-price{flex-direction:row;align-items:baseline;gap:6px;margin-top:24px;padding-top:20px;font-size:2.3rem}
+  .plan .button{min-height:50px;margin-top:18px;font-size:.875rem}
+  .js .calendar-plan-button{min-height:48px;margin-top:12px;padding-block:11px}
+  .plan:last-child{display:flex;grid-column:auto}
+  .plan:last-child .plan-price{margin-top:24px}
+  .plan:last-child .button{margin-top:18px}
+  .plan:last-child .calendar-plan-button{align-self:stretch}
+}
+@media(max-width:390px){
+  .plan{padding:23px 18px 21px}
+  .plan h3{font-size:1.9rem}
+  .plan-price{font-size:2.15rem}
+}
+@media(max-width:350px){
+  .plan{padding-inline:16px}
+  .plan h3{font-size:1.8rem}
+  .plan-price{font-size:2rem}
+}
+
+/* Calendar experience: reinforce context, controls and reading order. */
+.calendar-demo:focus{outline:none}
+.calendar-demo:focus-visible{outline:2px solid var(--olive-dark);outline-offset:6px}
+.calendar-demo-header>div{min-width:0}
+.calendar-demo-title{font-size:1.8rem;line-height:1.18}
+.calendar-demo-notice{display:inline-block;margin-top:16px;padding:8px 11px;border-left:3px solid var(--olive-dark);background:#e7e9df;color:var(--ink);font-size:.75rem;font-weight:600;line-height:1.5}
+.calendar-demo-notice strong{font-weight:700}
+.calendar-body{border-top:1px solid var(--line)}
+.calendar-config h3{font-size:1.65rem;line-height:1.25;letter-spacing:-.035em}
+.calendar-weekly{margin-top:20px}
+.calendar-example-label,.calendar-month-label{color:var(--olive-dark);font-weight:700;letter-spacing:.06em}
+.calendar-month-label{text-transform:uppercase}
+.calendar-month-controls{max-width:390px}
+.calendar-month-step{background:var(--paper);font-weight:600}
+.calendar-preview{overflow:hidden;border:1px solid var(--line);border-top:3px solid var(--olive-dark);border-radius:var(--radius)}
+.calendar-heading{align-items:flex-start}
+.calendar-heading h3{font-size:2rem;font-weight:600;line-height:1.15}
+.example-badge{background:var(--paper);font-weight:600}
+.month-grid{min-width:0}
+.calendar-agenda li strong{color:var(--ink)}
+
+@media(max-width:760px){
+  .calendar-demo-title{font-size:1.45rem}
+  .calendar-demo-notice{margin-top:14px;font-size:.6875rem}
+  .calendar-body{padding-inline:0}
+  .calendar-preview{padding:19px 10px}
+  .calendar-heading h3{font-size:1.45rem}
+  .calendar-month-controls{max-width:none}
+  .month-grid{font-size:.75rem}
+  .month-grid th{white-space:nowrap}
+  .calendar-duration{white-space:normal}
+}
+@media(max-width:380px){
+  .calendar-demo-notice{display:block}
+  .calendar-preview{padding-inline:7px}
+  .month-grid th,.month-grid td{padding-inline:2px}
+}
+
+/* Hero: clearer message and action hierarchy without changing its composition. */
+.hero{grid-template-columns:minmax(0,1.16fr) minmax(380px,.94fr);gap:72px}
+.hero-copy{max-width:640px}
+.hero .eyebrow{margin-bottom:22px}
+.hero h1{max-width:620px}
+.hero-slogan{max-width:530px;margin-top:22px;font-size:1.1rem;line-height:1.5}
+.hero-intro{max-width:540px;margin-top:14px;color:#545a4f;font-size:1.0625rem;line-height:1.75}
+.hero-actions{gap:28px;margin-top:32px}
+.hero-actions .button{min-height:56px;padding:17px 28px;font-weight:700}
+.hero-actions .text-link{color:var(--olive-dark);font-size:.8125rem;font-weight:700}
+.hero-proof{max-width:540px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
+.hero-art{justify-self:end;width:100%;max-width:520px}
+.art-bottom{margin-top:20px;padding-top:18px;border-top:1px solid rgba(9,9,9,.2)}
+.art-bottom span{text-transform:uppercase;font-size:.6875rem;font-weight:700;letter-spacing:.1em}
+.art-bottom strong{font-size:.9rem}
+
+@media(min-width:761px) and (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:32px}
+  .hero h1{font-size:3.3rem}
+  .hero-slogan{font-size:1rem}
+  .hero-intro{font-size:.975rem}
+  .hero-actions{gap:20px}
+  .hero-actions .button{padding-inline:22px}
+  .brand-poster{padding:24px}
+}
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr;gap:34px;padding-block:38px 48px;align-items:start}
+  .hero-copy{max-width:none}
+  .hero .eyebrow{margin-bottom:20px}
+  .hero-slogan{margin-top:20px;font-size:1.05rem}
+  .hero-intro{margin-top:13px;font-size:1rem;line-height:1.7}
+  .hero-actions{gap:16px;margin-top:26px}
+  .hero-actions .button{min-height:54px;padding-inline:22px}
+  .hero-proof{margin-top:26px;padding-top:16px;gap:12px 18px}
+  .hero-art{display:flex;flex-direction:column;justify-self:stretch;max-width:520px;margin-right:0;padding:21px}
+  .art-top{order:0;margin-bottom:14px}
+  .art-bottom{order:1;margin:0 0 18px;padding:0 0 16px;border-top:0;border-bottom:1px solid rgba(9,9,9,.2)}
+  .brand-poster{order:2;padding:24px 44px}
+  .brand-poster img{max-height:240px}
+}
+@media(max-width:390px){
+  .hero h1{font-size:2.75rem}
+  .hero-actions{gap:14px}
+  .brand-poster{padding-inline:38px}
+}
+@media(max-width:350px){
+  .hero h1{font-size:2.55rem}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-actions .button{width:100%}
+  .hero-actions .text-link{justify-self:center}
+  .hero-proof{gap:10px 14px}
+  .brand-poster{padding-inline:34px}
+}
+
+/* Space benefits: editorial grouping without additional cards. */
+.space-copy{min-width:0}
+.feature-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:30px;margin-top:40px}
+.feature-list>.feature-group{display:grid;grid-template-columns:30px minmax(0,1fr);gap:16px;align-content:start;padding:24px 0}
+.feature-list>.feature-group-wide{grid-column:1/-1}
+.feature-content{min-width:0}
+.feature-group-label,.space-group-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;line-height:1.45}
+.feature-group-label{margin-bottom:7px;color:var(--olive-dark)}
+.feature-list h3{font-size:1.15rem;line-height:1.4}
+.feature-list p:not(.feature-group-label){margin-top:10px;font-size:.9375rem;line-height:1.7}
+.equipment-list{margin-top:14px;padding-left:20px;font-size:.9375rem;line-height:1.7}
+.equipment-list li{margin-bottom:10px;padding-left:3px}
+.equipment-list li:last-child{margin-bottom:0}
+.equipment-list li::marker{color:var(--olive-dark)}
+.space-group-label{margin-bottom:7px;color:#eef0e8}
+.space-sheet .eyebrow{margin-bottom:24px;color:#cfd4c8;font-size:.6875rem;font-weight:600}
+.space-size{padding-bottom:28px}
+.capacity{gap:0}
+.capacity>div{min-width:0}
+.capacity p{line-height:1.55}
+.space-note{display:grid;gap:6px;line-height:1.6}
+.space-signature{padding-top:28px;font-size:1.45rem;color:#dde1d6}
+
+@media(max-width:900px){
+  .feature-list{grid-template-columns:1fr}
+  .feature-list>.feature-group-wide{grid-column:auto}
+}
+@media(max-width:760px){
+  .feature-list{margin-top:30px}
+  .feature-list>.feature-group{grid-template-columns:28px minmax(0,1fr);gap:13px;padding:22px 0}
+  .feature-list h3{font-size:1.1rem}
+  .equipment-list{font-size:.9375rem;line-height:1.65}
+  .space-sheet .eyebrow{margin-bottom:21px}
+  .space-signature{padding-top:25px}
+}
+@media(max-width:350px){
+  .feature-list>.feature-group{grid-template-columns:1fr;gap:5px}
+  .feature-number{padding-top:0}
+  .space-size{gap:14px}
+}
+
+/* FAQ: clearer answer hierarchy while preserving the existing accordion. */
+.faq-list details[open] summary{color:var(--olive-dark)}
+.faq-list details>p,.faq-list details>ul{max-width:760px}
+.faq-list details p+p{margin-top:12px}
+.faq-answer-lead{display:block;margin-bottom:6px;color:var(--ink);font-weight:600;line-height:1.6}
+.faq-hours{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;padding-block:16px;border-block:1px solid #d4d6cc}
+.faq-hours span,.faq-hours strong{display:block}
+.faq-hours strong{margin-bottom:3px;color:var(--ink);font-weight:600}
+.faq-list .plan-mix-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 28px;margin-block:14px;padding-bottom:14px;border-bottom:1px solid #d4d6cc;color:var(--muted);line-height:1.65}
+.faq-list .plan-mix-list li{padding-block:4px}
+.faq-list .plan-mix-list strong{color:var(--ink);font-weight:600}
+.faq-example{padding-left:14px;border-left:2px solid var(--olive)}
+
+@media(max-width:760px){
+  .faq-grid{gap:32px}
+  .faq-list details{padding-block:18px}
+  .faq-list summary{min-height:48px;font-size:1rem;line-height:1.45}
+  .faq-list details p{margin-top:14px;line-height:1.7}
+  .faq-hours,.faq-list .plan-mix-list{grid-template-columns:1fr}
+  .faq-hours{gap:10px;padding-block:14px}
+  .faq-list .plan-mix-list{gap:0}
+}
+
+/* Global type and spacing polish: align small labels and mobile rhythm. */
+body .top-alert-banner .badge,
+.feature-list .feature-group-label,
+.space-group-label,
+.space-sheet .eyebrow,
+.founders .discount-kicker,
+.founders .guarantee-kicker,
+.founders .founder-dates p>span{
+  font-size:.75rem;
+  line-height:1.5;
+}
+.plan-name,.plan-mix{font-size:.875rem}
+.calendar-demo-notice{font-size:.8125rem;line-height:1.55}
+.contact-address address{line-height:1.7}
+.footer-inner{font-size:.875rem;line-height:1.6}
+
+@media(max-width:760px){
+  .section{padding-block:60px}
+  .space{padding-top:56px}
+  .nav-wrap .nav-actions>.button{font-size:.8125rem;line-height:1.25}
+  .plan-hours-guide strong{font-size:.75rem}
+  .calendar-demo-notice{font-size:.75rem}
+  .calendar-heading .eyebrow,.month-grid th{font-size:.75rem}
+  .calendar-cell-kind{font-size:.6875rem}
+  .footer-inner{gap:20px}
+  .footer-inner>span{font-size:.8125rem}
+}
+
+/* Slogan and footer: a clearer, orderly final brand statement. */
+.site-footer{padding:40px 0 46px}
+.footer-inner{gap:24px;padding-right:64px}
+.footer-inner img{width:150px}
+.footer-slogan{max-width:280px;font-size:1.125rem;line-height:1.4}
+
+@media(max-width:760px){
+  .site-footer{padding-block:38px}
+  .footer-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:start;padding-right:0}
+  .footer-inner img{width:150px;margin-bottom:4px}
+  .footer-slogan{max-width:300px;margin-bottom:4px}
+  .footer-inner>p,.footer-inner>span{width:auto}
+  .footer-inner a{width:fit-content}
+  .footer-inner>span{padding-top:4px}
+}
+
+/* Keep the highlighted founder benefit centered between its divider lines. */
+.founders .founder-benefits ul{padding-top:0}
+.founders .founder-benefits li:first-child{padding-block:24px}
+
+@media(max-width:760px){
+  .founders .founder-benefits li:first-child{padding-block:18px}
+}
