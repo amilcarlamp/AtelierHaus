@@ -572,10 +572,14 @@ body .top-alert-banner .badge,
 .hero{position:relative;padding-block:36px 14px;border-bottom:1px solid var(--line)}
 .hero-bottom{display:grid;grid-template-columns:1fr;justify-items:center;gap:8px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
 .hero-bottom .hero-proof{max-width:none;margin:0;padding:0;border:0;gap:14px;justify-content:center}
-.hero-scroll-cue{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:160px;padding:4px 8px;color:var(--muted);text-align:center;transition:opacity .25s ease,color .25s ease}
-.hero-scroll-cue:hover{color:var(--ink);opacity:.68}
+.hero-scroll-cue{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-width:0;padding:4px 0 14px;color:var(--muted);text-align:center;transition:opacity .25s ease,color .25s ease}
+.hero-scroll-cue:hover{color:var(--ink);opacity:.82}
 .hero-scroll-label{margin-bottom:12px;font-size:.65rem;font-weight:600;letter-spacing:2px;line-height:1.4}
-.hero-scroll-circle{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border:1px solid var(--olive);border-radius:50%;animation:hero-scroll-bounce 2s ease-in-out infinite}
+.hero-scroll-track{display:flex;align-items:center;width:100%;gap:16px}
+.hero-scroll-track:before,.hero-scroll-track:after{content:'';height:1px;flex:1;background:var(--line)}
+.hero-scroll-circle{position:relative;display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;border:1px solid var(--olive);border-radius:50%;animation:hero-scroll-bounce 2s ease-in-out infinite;transition:background-color .25s ease,border-color .25s ease,color .25s ease}
+.hero-scroll-circle:after{content:'';position:absolute;top:calc(100% + 6px);left:50%;width:1px;height:12px;background:var(--olive);transform:translateX(-50%);opacity:.75}
+.hero-scroll-cue:hover .hero-scroll-circle{background:var(--olive-dark);border-color:var(--olive-dark);color:var(--paper)}
 .hero-scroll-arrow{display:block;flex:none;width:18px;height:24px}
 @keyframes hero-scroll-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
@@ -584,17 +588,18 @@ body .top-alert-banner .badge,
 }
 @media(min-width:1600px){.hero{padding-block:64px 38px}}
 @media(min-width:1101px) and (max-height:720px){
-  .hero{align-items:start;padding-top:18px}
-  .hero .eyebrow{margin-bottom:12px}
-  .hero-slogan{margin-top:12px}
-  .hero-intro{margin-top:8px}
-  .hero-actions{margin-top:18px}
-  .hero-bottom{margin-top:10px;padding-top:6px}
+  .hero{align-items:start;padding-top:14px}
+  .hero .eyebrow{margin-bottom:8px}
+  .hero-slogan{margin-top:8px}
+  .hero-intro{margin-top:6px}
+  .hero-actions{margin-top:14px}
+  .hero-bottom{margin-top:8px;padding-top:6px}
 }
 @media(max-width:760px){
   .hero{padding-block:38px 32px;row-gap:0}
   .hero-bottom{display:block;margin-top:26px;padding-top:16px}
-  .hero-scroll-cue{display:flex;width:max-content;margin:32px auto 0}
+  .hero-scroll-cue{display:flex;margin:32px auto 0}
+  .hero-scroll-track{gap:10px}
   .hero-scroll-circle{width:40px;height:40px}
   .hero-scroll-arrow{width:16px;height:22px}
   .hero-art{grid-row:auto;margin-top:28px}
