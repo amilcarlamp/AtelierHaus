@@ -40,6 +40,7 @@
 .session-continuous{margin-top:20px;font-size:1rem;color:var(--muted)}.session-continuous strong{color:var(--ink);font-weight:600}
 .plan-mix{font-size:.8125rem;line-height:1.65;color:var(--olive-dark);margin-top:12px;min-height:66px}.plan-mix small{display:block;font-size:.75rem;color:var(--muted);margin-top:3px}
 .calendar-plan-button{display:none}.js .calendar-plan-button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;background:transparent;color:var(--olive-dark);border:0;border-bottom:1px solid var(--line);padding:8px 0;margin-top:10px;font-size:.875rem;font-weight:600;line-height:1.4}
+.calendar-plan-button svg{display:block;width:16px;height:16px;flex:none}
 .calendar-plan-button:hover,.calendar-plan-button[aria-pressed=true]{color:var(--ink);border-color:var(--olive-dark)}
 .scroll-reveal{transition:opacity 460ms cubic-bezier(.22,.61,.36,1),transform 460ms cubic-bezier(.22,.61,.36,1);transition-delay:var(--reveal-delay,0ms)}.scroll-reveal.is-pending{opacity:0;transform:translateY(16px);will-change:opacity,transform}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-reveal,.scroll-reveal.is-pending{opacity:1!important;transform:none!important;transition:none!important}.button,.mobile-contact{transition:none!important}}
