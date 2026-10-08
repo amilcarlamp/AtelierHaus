@@ -38,6 +38,21 @@ if('IntersectionObserver' in window){
   observer.observe(document.querySelector('.hero'));
 }else{mobileContact.dataset.visible='true';}
 
+const equipmentToggle = document.querySelector('.equipment-toggle');
+const equipmentPanel = document.querySelector('#equipment-details-panel');
+const equipmentToggleLabel = equipmentToggle.querySelector('.equipment-toggle-label');
+function setEquipmentExpanded(expanded) {
+  equipmentToggle.setAttribute('aria-expanded', String(expanded));
+  equipmentToggleLabel.textContent = expanded ? 'Ocultar equipamiento completo' : 'Ver equipamiento completo';
+  equipmentPanel.dataset.open = String(expanded);
+  equipmentPanel.setAttribute('aria-hidden', String(!expanded));
+  equipmentPanel.inert = !expanded;
+}
+equipmentToggle.addEventListener('click', () => {
+  setEquipmentExpanded(equipmentToggle.getAttribute('aria-expanded') !== 'true');
+});
+setEquipmentExpanded(false);
+
 const rows = [...document.querySelectorAll('.calendar-plan-button')];
 // Illustrative schedules only; real availability is confirmed through WhatsApp.
 const calendarMonth = document.querySelector('#calendar-month');
@@ -216,29 +231,84 @@ renderExampleMonth();
 
 
 
-// Reveal content once, with a small movement; keep it readable without JS.
+// Reveal selected content once; keep it readable without JS or IntersectionObserver.
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 if ('IntersectionObserver' in window && !reducedMotion.matches) {
-  const targets = document.querySelectorAll('.space-copy, .space-sheet, .section-heading, .steps article, .founders-grid > div, .opening-guarantee, .plans-grid, .schedule, .faq-grid > div:first-child, .faq-list details, .contact-grid > div');
+  const standaloneTargets = document.querySelectorAll('.space-copy, .equipment-disclosure, .space-autonomy, .section-heading, .schedule, .faq-grid > div:first-child, .contact-grid > div');
+  const revealGroups = [
+    document.querySelectorAll('.space-benefit-card'),
+    document.querySelectorAll('.steps article'),
+    document.querySelectorAll('.founders-grid > div, .opening-guarantee'),
+    document.querySelectorAll('.plans-grid > .plan'),
+    document.querySelectorAll('.faq-list details')
+  ];
+  const targets = [...new Set([
+    ...standaloneTargets,
+    ...revealGroups.flatMap(group => [...group])
+  ])];
+
+  revealGroups.forEach(group => {
+    group.forEach((element, index) => {
+      element.style.setProperty('--reveal-delay', `${(index % 5) * 80}ms`);
+    });
+  });
+
   const reveal = element => {
+    if (!element.classList.contains('is-pending')) return;
     element.classList.remove('is-pending');
     observer.unobserve(element);
+    element.addEventListener('transitionend', () => {
+      element.classList.remove('scroll-reveal');
+      element.style.removeProperty('--reveal-delay');
+    }, { once: true });
   };
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
-  }, { threshold: 0.06, rootMargin: '0px 0px -16px 0px' });
+    entries.forEach(entry => {
+      if (entry.isIntersecting || entry.boundingClientRect.top < 0) reveal(entry.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+
+  let scrollCheckQueued = false;
+  const revealSkippedTargets = () => {
+    scrollCheckQueued = false;
+    targets.forEach(element => {
+      if (element.classList.contains('is-pending') && element.getBoundingClientRect().bottom < 0) {
+        element.style.setProperty('--reveal-delay', '0ms');
+        reveal(element);
+      }
+    });
+    if (!targets.some(element => element.classList.contains('is-pending'))) {
+      window.removeEventListener('scroll', queueSkippedTargetCheck);
+    }
+  };
+  const queueSkippedTargetCheck = () => {
+    if (!scrollCheckQueued) {
+      scrollCheckQueued = true;
+      window.requestAnimationFrame(revealSkippedTargets);
+    }
+  };
+  window.addEventListener('scroll', queueSkippedTargetCheck, { passive: true });
+
   targets.forEach(element => {
-    // Leave the initial viewport and any content above it visible immediately.
-    if (element.getBoundingClientRect().top >= window.innerHeight) {
+    // Leave the initial viewport and nearby content visible immediately.
+    if (element.getBoundingClientRect().top > window.innerHeight + 24) {
       element.classList.add('scroll-reveal', 'is-pending');
       observer.observe(element);
-      element.addEventListener('focusin', () => reveal(element), { once: true });
+      element.addEventListener('focusin', () => {
+        element.style.setProperty('--reveal-delay', '0ms');
+        reveal(element);
+      }, { once: true });
     }
   });
+
   reducedMotion.addEventListener('change', event => {
     if (event.matches) {
-      targets.forEach(element => element.classList.remove('is-pending'));
+      targets.forEach(element => {
+        element.classList.remove('scroll-reveal', 'is-pending');
+        element.style.removeProperty('--reveal-delay');
+      });
       observer.disconnect();
+      window.removeEventListener('scroll', queueSkippedTargetCheck);
     }
   });
 }
