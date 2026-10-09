@@ -674,3 +674,197 @@ body .top-alert-banner .badge,
   .space-benefits-grid{grid-template-columns:1fr}
   .space-benefit-capacity,.space-benefit-card:last-child{grid-column:auto}
 }
+
+/* Visual rhythm: airy sections, light sage alternation and clearer cards. */
+:root{
+  --sage-soft:#ecefe7;
+  --card-surface:#faf9f6;
+  --card-shadow:0 12px 30px rgba(75,83,64,.08);
+}
+
+.section{padding-block:124px}
+h2{font-size:clamp(2.65rem,4.4vw,4.15rem)}
+.section-intro,.section-heading>p,.pricing-side>p{font-size:1.05rem;line-height:1.75;color:var(--muted)}
+
+.space{
+  background:var(--sage-soft);
+  box-shadow:0 0 0 100vmax var(--sage-soft);
+  clip-path:inset(0 -100vmax);
+}
+.how{background:var(--paper)}
+.faq{background:var(--sage-soft)}
+
+.space-benefit-card,.plan{
+  border-radius:8px;
+  background:var(--card-surface);
+  box-shadow:var(--card-shadow);
+}
+.space-benefit-capacity{background:var(--olive-dark);border-color:var(--olive-dark)}
+.plans-grid{gap:16px}
+.plan{border-color:#cfd3c8}
+
+.plan-featured{
+  background:#e5e9df!important;
+  border:2px solid var(--olive-dark)!important;
+  box-shadow:0 16px 34px rgba(75,83,64,.16);
+  transform:translateY(-5px);
+}
+.plan-featured:hover{
+  transform:translateY(-7px);
+  box-shadow:0 20px 38px rgba(75,83,64,.2);
+}
+.recommended-badge{
+  background:var(--olive-dark);
+  color:var(--paper);
+  box-shadow:0 5px 14px rgba(75,83,64,.2);
+}
+
+@media(max-width:760px){
+  .section{padding-block:76px}
+  h2{font-size:clamp(2.55rem,12vw,3.45rem)}
+  .section-heading{margin-bottom:38px}
+  .section-intro,.section-heading>p,.pricing-side>p,
+  .steps p,.space-benefit-card>p:not(.feature-group-label),
+  .space-benefit-capacity-grid p,.space-benefit-note,
+  .space-autonomy div>p,.founder-benefits li span,
+  .rate-description,.plan-hours-guide span,.plan-description,
+  .plan-mix,.plan-mix small,.plans-note,
+  .schedule>div>p:not(.eyebrow),.schedule>p,
+  .faq-list details p,.contact-grid>div:first-child>p:not(.eyebrow),
+  .contact-address address,.calendar-demo-subtitle,
+  .calendar-agenda li,.calendar-disclaimer,.session-continuous,
+  .session-strip>p,.session-note,.session-bar span,
+  .opening-guarantee p:not(.guarantee-kicker),
+  .founders .opening-guarantee .founder-deadline,
+  .calendar-demo-notice,.calendar-help,.simple-class-note,
+  .calendar-month-note,.calendar-hours-guide p,
+  .calendar-demo .calendar-hours-guide summary,.calendar-empty p,
+  .calendar-demo .link,.calendar-totals{
+    font-size:1rem!important;
+    line-height:1.7;
+  }
+  .space-benefit-card,.plan{box-shadow:0 9px 24px rgba(75,83,64,.09)}
+  .plans-grid{gap:18px}
+  .plan-featured,.plan-featured:hover{transform:none}
+  .plan .button,.calendar-plan-button{min-height:50px}
+}
+
+/* Plan simulator: one clear action per plan in an accessible modal. */
+body.calendar-modal-open{overflow:hidden}
+
+.js .calendar-plan-button{
+  display:flex;
+  width:100%;
+  min-height:52px;
+  margin-top:20px;
+  padding:14px 18px;
+  border:1px solid var(--ink);
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--paper);
+  font-size:.9375rem;
+  transition:background-color .2s ease,border-color .2s ease,transform .2s ease;
+}
+.calendar-plan-button:hover{
+  border-color:var(--olive-dark);
+  background:var(--olive-dark);
+  color:var(--paper);
+  transform:translateY(-2px);
+}
+.calendar-plan-button[aria-pressed=true]{
+  border-color:var(--olive-dark);
+  background:var(--olive-dark);
+  color:var(--paper);
+}
+.plan.is-selected{
+  border-color:var(--olive-dark);
+  box-shadow:0 16px 34px rgba(75,83,64,.16);
+}
+
+dialog.calendar-demo{
+  position:fixed;
+  inset:0;
+  width:min(1120px,calc(100% - 40px));
+  max-width:none;
+  max-height:calc(100dvh - 40px);
+  margin:auto;
+  padding:0;
+  overflow:auto;
+  overscroll-behavior:contain;
+  border:1px solid #c8ccc1;
+  border-radius:8px;
+  background:var(--paper);
+  color:var(--ink);
+  box-shadow:0 28px 80px rgba(9,9,9,.3);
+}
+dialog.calendar-demo:not([open]){display:none!important}
+dialog.calendar-demo[open]{display:block!important}
+dialog.calendar-demo::backdrop{background:rgba(9,9,9,.62)}
+
+dialog.calendar-demo .calendar-demo-header{
+  position:sticky;
+  top:0;
+  z-index:3;
+  align-items:center;
+  padding:24px 28px;
+  border-bottom:1px solid var(--line);
+  background:rgba(246,244,240,.97);
+}
+dialog.calendar-demo .calendar-demo-toggle{
+  display:inline-flex!important;
+  flex:none;
+  align-items:center;
+  justify-content:center;
+  min-width:170px;
+  min-height:50px;
+  margin:0;
+  padding:13px 22px;
+  border:1px solid var(--ink);
+  border-radius:999px;
+  background:var(--ink);
+  color:var(--paper);
+  font-size:.9375rem;
+  font-weight:700;
+}
+dialog.calendar-demo .calendar-demo-toggle:hover{background:var(--olive-dark);border-color:var(--olive-dark)}
+dialog.calendar-demo .calendar-body{padding:28px;border-top:0}
+dialog.calendar-demo .calendar-disclaimer{padding:20px 28px 24px}
+
+@media(max-width:760px){
+  .plans-grid{
+    display:flex;
+    grid-template-columns:none;
+    gap:14px;
+    margin-inline:-20px;
+    padding:18px 20px 30px;
+    overflow-x:auto;
+    overscroll-behavior-inline:contain;
+    scroll-padding-inline:20px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .plans-grid::-webkit-scrollbar{display:none}
+  .plan,.plan:last-child{
+    display:flex;
+    flex:0 0 82vw;
+    max-width:320px;
+    scroll-snap-align:center;
+  }
+  .js .calendar-plan-button{min-height:52px;font-size:1rem}
+  .plan.is-selected{box-shadow:0 12px 28px rgba(75,83,64,.16)}
+
+  dialog.calendar-demo{
+    width:calc(100% - 12px);
+    max-height:calc(100dvh - 12px);
+  }
+  dialog.calendar-demo .calendar-demo-header{
+    align-items:stretch;
+    gap:16px;
+    padding:20px 16px 16px;
+  }
+  dialog.calendar-demo .calendar-demo-title{font-size:1.45rem}
+  dialog.calendar-demo .calendar-demo-toggle{width:100%;min-height:52px;font-size:1rem}
+  dialog.calendar-demo .calendar-body{padding:20px 14px 24px}
+  dialog.calendar-demo .calendar-disclaimer{padding:18px 14px calc(18px + env(safe-area-inset-bottom))}
+  body.calendar-modal-open .mobile-contact{display:none}
+}

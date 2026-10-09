@@ -1,9 +1,10 @@
 'use strict';
 document.body.classList.add('js');
 const phone='522207784832';
-const initialMessage='Hola, me interesa impartir mi actividad en Atelier Haus. ¿Podemos revisar planes y horarios disponibles?';
+const generalWhatsappMessage='Hola, quiero dar clases en Atelier Haus. ¿Me platican más?';
 document.querySelectorAll('.whatsapp').forEach(link=>{
-  link.href=`https://wa.me/${phone}?text=${encodeURIComponent(initialMessage)}`;
+  const message=link.dataset.whatsappMessage || generalWhatsappMessage;
+  link.href=`https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 });
 
 let selectedRate='founder';
@@ -12,12 +13,6 @@ const formatMXN=new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',m
 function updatePlans(){
   rates.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.rate===selectedRate)));
   document.querySelectorAll('[data-price]').forEach(price=>{price.textContent=formatMXN.format(Number(price.dataset[selectedRate]));});
-  document.querySelectorAll('.plan-link').forEach(link=>{
-    const hours=link.dataset.hours;
-    const rate=selectedRate==='founder'?'tarifa fundador':'precio normal';
-    const message=`Hola, me interesa el plan ${link.dataset.plan} de Atelier Haus (${hours} ${hours==='1'?'hora':'horas'} por semana), con ${rate}. Mi actividad es: ____. ¿Qué horarios tienen disponibles?`;
-    link.href=`https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  });
   document.getElementById('rate-description').textContent=selectedRate==='founder'
     ?'20% de descuento durante tus primeros 3 meses. Requiere permanecer 3 meses consecutivos.'
     :'Precio normal, con pago mes a mes. Sin permanencia de 3 meses; avisa con una semana de anticipación para cancelar.';
@@ -33,9 +28,12 @@ nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMen
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){setMenu(false);menu.focus();}});
 
 const mobileContact=document.querySelector('.mobile-contact');
-if('IntersectionObserver' in window){
-  const observer=new IntersectionObserver(entries=>{mobileContact.dataset.visible=String(!entries[0].isIntersecting);},{threshold:0.12});
-  observer.observe(document.querySelector('.hero'));
+const heroPrimaryCta=document.querySelector('.hero-primary-cta');
+if('IntersectionObserver' in window && heroPrimaryCta){
+  const mobileContactObserver=new IntersectionObserver(entries=>{
+    mobileContact.dataset.visible=String(!entries[0].isIntersecting);
+  },{threshold:0.1});
+  mobileContactObserver.observe(heroPrimaryCta);
 }else{mobileContact.dataset.visible='true';}
 
 const equipmentToggle = document.querySelector('.equipment-toggle');
@@ -63,19 +61,62 @@ const calendarNext = document.querySelector('#calendar-next');
 const calendarDemo = document.querySelector('#calendar-demo');
 const calendarDemoToggle = document.querySelector('#calendar-demo-toggle');
 const calendarDemoMobileQuery = window.matchMedia('(max-width: 760px)');
-function setCalendarDemoExpanded(expanded) {
-  calendarDemo.dataset.expanded = String(expanded);
-  calendarDemoToggle.setAttribute('aria-expanded', String(expanded));
-  calendarDemoToggle.textContent = expanded ? 'Cerrar simulador' : 'Simular mi mes';
+const plansGrid = document.querySelector('.plans-grid');
+const featuredPlan = document.querySelector('.plan-featured');
+let lastCalendarTrigger = null;
+
+function centerFeaturedPlan() {
+  if (!calendarDemoMobileQuery.matches || !featuredPlan) return;
+  plansGrid.scrollLeft = Math.max(0, featuredPlan.offsetLeft - (plansGrid.clientWidth - featuredPlan.offsetWidth) / 2);
 }
-function syncCalendarDemoDisclosure() {
-  setCalendarDemoExpanded(!calendarDemoMobileQuery.matches);
+
+function setCalendarPlan(button) {
+  rows.forEach(row => {
+    const selected = row === button;
+    row.setAttribute('aria-pressed', String(selected));
+    row.closest('.plan').classList.toggle('is-selected', selected);
+  });
+  calendarPlan = button.dataset;
 }
-calendarDemoToggle.addEventListener('click', () => {
-  setCalendarDemoExpanded(calendarDemoToggle.getAttribute('aria-expanded') !== 'true');
+
+function openCalendarDemo(trigger) {
+  lastCalendarTrigger = trigger;
+  renderExampleMonth();
+  if (typeof calendarDemo.showModal === 'function') {
+    if (!calendarDemo.open) calendarDemo.showModal();
+  } else {
+    calendarDemo.setAttribute('open', '');
+  }
+  document.body.classList.add('calendar-modal-open');
+  calendarDemo.scrollTop = 0;
+  requestAnimationFrame(() => calendarDemoToggle.focus());
+}
+
+function closeCalendarDemo() {
+  if (typeof calendarDemo.close === 'function' && calendarDemo.open) {
+    calendarDemo.close();
+  } else {
+    calendarDemo.removeAttribute('open');
+    document.body.classList.remove('calendar-modal-open');
+    if (lastCalendarTrigger) lastCalendarTrigger.focus();
+  }
+}
+
+calendarDemoToggle.addEventListener('click', closeCalendarDemo);
+calendarDemo.addEventListener('close', () => {
+  document.body.classList.remove('calendar-modal-open');
+  if (lastCalendarTrigger) lastCalendarTrigger.focus();
 });
-syncCalendarDemoDisclosure();
-calendarDemoMobileQuery.addEventListener('change', syncCalendarDemoDisclosure);
+calendarDemo.addEventListener('click', event => {
+  if (event.target !== calendarDemo) return;
+  const bounds = calendarDemo.getBoundingClientRect();
+  const inside = event.clientX >= bounds.left && event.clientX <= bounds.right && event.clientY >= bounds.top && event.clientY <= bounds.bottom;
+  if (!inside) closeCalendarDemo();
+});
+calendarDemoMobileQuery.addEventListener('change', event => {
+  if (event.matches) requestAnimationFrame(centerFeaturedPlan);
+});
+window.addEventListener('load', () => requestAnimationFrame(centerFeaturedPlan), {once:true});
 const weeklyExamples = {
   Lienzo: [{day:1, start:14, hours:1, kind:'regular'}],
   Boceto: [{day:1, start:18, hours:1, kind:'estelar'}, {day:3, start:14, hours:1, kind:'regular'}],
@@ -87,7 +128,9 @@ const weekdayNames = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Vie
 const kindName = kind => kind === 'estelar' ? 'Estelar' : 'Regular';
 const clockHour = hour => String(hour).padStart(2,'0') + ':00';
 const timeRange = session => clockHour(session.start) + '–' + clockHour(session.start + session.hours);
-let calendarPlan = rows.find(row => row.getAttribute('aria-pressed') === 'true').dataset;
+const initialCalendarButton = rows.find(row => row.getAttribute('aria-pressed') === 'true') || rows[0];
+let calendarPlan = initialCalendarButton.dataset;
+setCalendarPlan(initialCalendarButton);
 const currentDateParts = new Intl.DateTimeFormat('en-CA', {
   timeZone:'America/Mexico_City', year:'numeric', month:'2-digit'
 }).formatToParts(new Date());
@@ -143,7 +186,9 @@ function renderExampleMonth() {
     li.append(day, detail);
     agenda.append(li);
   });
-  document.querySelector('#calendar-contact').href = 'https://wa.me/522207784832?text=' + encodeURIComponent('Hola, me interesa el plan ' + calendarPlan.plan + ' (' + weeklyHours + ' horas por semana), con ' + (selectedRate === 'founder' ? 'tarifa fundador' : 'precio normal') + '. Vi el calendario de ejemplo. ¿Podemos revisar los días y horarios disponibles?');
+  const planRateLabel = selectedRate === 'founder' ? 'como Tallerista Fundador' : 'con precio normal';
+  const planMessage = `Hola, me interesa el plan ${calendarPlan.plan} ${planRateLabel}. ¿Qué horarios hay?`;
+  document.querySelector('#calendar-contact').href = `https://wa.me/${phone}?text=${encodeURIComponent(planMessage)}`;
   calendarError.hidden = true;
   calendarResult.hidden = false;
   const selectedMonth = readCalendarMonth();
@@ -215,12 +260,8 @@ function renderExampleMonth() {
   document.querySelector('#calendar-totals').textContent = 'El plan ' + calendarPlan.plan + ' tendría ' + classCount + ' clases y ' + reservedHours + ' horas reservadas en ' + monthName + ', en este ejemplo de mes completo.';
 }
 rows.forEach(row => row.addEventListener('click', () => {
-  rows.forEach(button => button.setAttribute('aria-pressed', String(button === row)));
-  calendarPlan = row.dataset;
-  renderExampleMonth();
-  setCalendarDemoExpanded(true);
-  calendarDemo.focus({preventScroll:true});
-  calendarDemo.scrollIntoView({block:'start', behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  setCalendarPlan(row);
+  openCalendarDemo(row);
 }));
 rates.forEach(button => button.addEventListener('click', renderExampleMonth));
 calendarMonth.addEventListener('input', renderExampleMonth);
