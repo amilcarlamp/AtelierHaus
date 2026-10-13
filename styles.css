@@ -519,6 +519,20 @@
 }
 
 /* FAQ: clearer answer hierarchy while preserving the existing accordion. */
+.faq-topic{margin:28px 0 8px;color:var(--olive-dark);font-size:.75rem;font-weight:700;line-height:1.5;letter-spacing:.1em;text-transform:uppercase}
+.faq-topic:first-child,.faq-list > template + .faq-topic{margin-top:0}
+.faq-list > template{display:none}
+html[data-founder-offer="closed"] [data-founder-only]{display:none!important}
+html[data-founder-offer="closed"] [data-price]{visibility:hidden}
+html[data-founder-offer="closed"].rates-ready [data-price]{visibility:visible}
+html[data-founder-offer="closed"] .how{padding-bottom:76px}
+html[data-founder-offer="closed"] .pricing{padding-top:76px}
+@media(max-width:760px){
+  html[data-founder-offer="closed"] .how{padding-bottom:48px}
+  html[data-founder-offer="closed"] .pricing{padding-top:48px}
+}
+.faq-inline-link{color:var(--olive-dark);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.faq-inline-link:hover{color:var(--ink)}
 .faq-list details[open] summary{color:var(--olive-dark)}
 .faq-list details>p,.faq-list details>ul{max-width:760px}
 .faq-list details p+p{margin-top:12px}

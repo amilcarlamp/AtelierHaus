@@ -3,24 +3,35 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Atelier Haus · Tu próxima clase ya tiene lugar</title>
-  <meta name="description" content="Espacio equipado para clases y talleres en San Martín Texmelucan. Horarios semanales fijos, sin comisiones. Conoce los planes de Tallerista Fundador.">
+  <meta name="description" content="Espacio equipado para clases y talleres en San Martín Texmelucan. Horarios semanales fijos, sin comisiones. Conoce los planes de Atelier Haus.">
   <link rel="canonical" href="https://atelierhaus.com.mx/">
   <meta property="og:url" content="https://atelierhaus.com.mx/">
   <meta name="theme-color" content="#F6F4F0">
   <meta property="og:title" content="Atelier Haus · Tu próxima clase ya tiene lugar">
   <meta property="og:description" content="Tú pones el talento. Nosotros, el espacio. Planes para talleristas en San Martín Texmelucan.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://atelierhaus.com.mx/social-preview-1200x630.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://atelierhaus.com.mx/social-preview-logo.png">
+  <meta property="og:image:width" content="6000">
+  <meta property="og:image:height" content="6000">
   <meta property="og:image:alt" content="Atelier Haus · Foro creativo en San Martín Texmelucan">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Atelier Haus · Tu próxima clase ya tiene lugar">
   <meta name="twitter:description" content="Tú pones el talento. Nosotros, el espacio. Planes para talleristas en San Martín Texmelucan.">
-  <meta name="twitter:image" content="https://atelierhaus.com.mx/social-preview-1200x630.jpg">
+  <meta name="twitter:image" content="https://atelierhaus.com.mx/social-preview-logo.png">
+  <script>
+    (() => {
+      const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Mexico_City', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(new Date()).map(({ type, value }) => [type, value]));
+      const localPreview = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+        && new URLSearchParams(location.search).get('preview') === 'post-founder';
+      document.documentElement.dataset.founderOffer =
+        localPreview || `${parts.year}-${parts.month}-${parts.day}` >= '2026-10-24' ? 'closed' : 'open';
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237D8471'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-weight='bold' font-size='42' fill='%23F6F4F0'%3EA%3C/text%3E%3C/svg%3E">
   <link rel="preload" href="./manrope.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=calendar-modal-1">
+  <link rel="stylesheet" href="styles.css?v=founder-expiry-1">
 </head>
 <body>
   <style>
@@ -86,11 +97,11 @@
       }
     }
   </style>
-  <a class="top-alert-banner" href="#fundadores" aria-label="Últimos días: Tallerista Fundador hasta el 16 de octubre. Ir a la promoción."><span class="top-alert-copy"><span class="badge">Últimos días</span><span aria-hidden="true"> · </span><strong>Tallerista Fundador</strong> hasta el 16 OCT</span><span class="top-alert-arrow" aria-hidden="true">→</span></a>
+  <a class="top-alert-banner" data-founder-only href="#fundadores" aria-label="Últimos días: Tallerista Fundador hasta el 23 de octubre. Ir a la promoción."><span class="top-alert-copy"><span class="badge">Últimos días</span><span aria-hidden="true"> · </span><strong>Tallerista Fundador</strong> hasta el 23 OCT</span><span class="top-alert-arrow" aria-hidden="true">→</span></a>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header class="site-header"><div class="container nav-wrap">
     <a class="brand" href="#inicio" aria-label="Atelier Haus, inicio"><img src="./wordmark.png" width="1300" height="347" alt="Atelier Haus, foro creativo"></a>
-    <nav id="main-nav" aria-label="Navegación principal"><a href="#espacio">El espacio</a><a href="#fundadores">Talleristas fundadores</a><a href="#planes">Planes</a><a href="#dudas">Dudas</a></nav>
+    <nav id="main-nav" aria-label="Navegación principal"><a href="#espacio">El espacio</a><a data-founder-only href="#fundadores">Talleristas fundadores</a><a href="#planes">Planes</a><a href="#dudas">Dudas</a></nav>
     <div class="nav-actions"><a class="button button-small whatsapp" href="https://wa.me/522207784832" target="_blank" rel="noopener noreferrer">Consultar horarios</a><button class="menu-toggle" type="button" aria-label="Abrir menú" aria-controls="main-nav" aria-expanded="false"><span></span><span></span></button></div>
   </div></header>
   <main id="contenido" tabindex="-1">
@@ -169,12 +180,12 @@
 
     <section class="how section" aria-labelledby="how-title"><div class="container"><div class="section-heading"><div><p class="eyebrow">UN HORARIO. TU PROYECTO.</p><h2 id="how-title">Llegas, enseñas, compartes.</h2></div><p>Tu plan reserva el mismo día y la misma hora cada semana.</p></div><div class="steps"><article><span>01</span><h3>Elige tu horario</h3><p>Dinos qué impartes y revisamos los horarios disponibles.</p></article><article><span>02</span><h3>Llega y da tu clase</h3><p>El espacio estará equipado; tú diriges tu clase.</p></article><article><span>03</span><h3>Cobra directamente</h3><p>Tú defines precios y cobros. Atelier Haus no cobra comisión.</p></article></div><div class="session-strip"><p>Una hora reservada,<br><strong>bien organizada.</strong></p><div class="session-bar"><span><b>50 min</b> de actividad</span><span><b>10 min</b> de transición</span></div><p class="session-note">Entrada, salida y acomodo<br>sin invadir el siguiente horario.</p></div></div></section>
 
-    <section class="founders section" id="fundadores" aria-labelledby="founders-title"><div class="container"><div class="founders-grid">
+    <section class="founders section" data-founder-only id="fundadores" aria-labelledby="founders-title"><div class="container"><div class="founders-grid">
       <div class="founder-intro"><p class="eyebrow">SOLO 5 LUGARES</p><h2 id="founders-title">Tallerista<br>Fundador</h2><p class="section-intro">Sé de las primeras personas en dar clases en Atelier Haus y conserva beneficios especiales durante tus primeros meses.</p></div>
       <div class="founder-benefits"><div class="discount"><span>20<small>%</small></span><div class="discount-copy"><span class="discount-kicker">BENEFICIO PRINCIPAL</span><p>menos durante tus primeros <strong>3 meses</strong></p></div></div><ul><li><strong>Prioridad para elegir horario</strong><span>Elige antes que nadie entre los horarios disponibles.</span></li><li><strong>Participación en la inauguración</strong><span>Forma parte de la apertura de Atelier Haus.</span></li><li><strong>Difusión de tu actividad</strong><span>Presentaremos tu clase o taller en nuestros canales para ayudarte a darla a conocer.</span></li></ul></div>
-    </div><div class="opening-guarantee"><div class="guarantee-mark" aria-hidden="true">50<span>%<br>APARTADO</span></div><div class="guarantee-content"><p class="guarantee-kicker">APARTADO Y CONDICIONES</p><h3>Aparta con el 50% de tu primera mensualidad</h3><p>Tu mensualidad y tu descuento comienzan a partir de la apertura real de Atelier Haus.</p><div class="founder-dates"><p class="founder-deadline"><span>FECHA LÍMITE DE LA PROMOCIÓN</span>Disponible hasta el 16 de octubre o hasta completar los 5 lugares, lo que ocurra primero.</p><p class="founder-opening-date"><span>APERTURA PREVISTA</span><strong>23 de octubre de 2026</strong></p></div><a class="button button-light whatsapp founder-cta" href="https://wa.me/522207784832" data-whatsapp-message="Hola, me interesa ser Tallerista Fundador en Atelier Haus. ¿Qué horarios hay?" target="_blank" rel="noopener noreferrer">Consultar disponibilidad</a></div></div></div></section>
+    </div><div class="opening-guarantee"><div class="guarantee-mark" aria-hidden="true">50<span>%<br>APARTADO</span></div><div class="guarantee-content"><p class="guarantee-kicker">APARTADO Y CONDICIONES</p><h3>Aparta con el 50% de tu primera mensualidad</h3><p>Tu mensualidad y tu descuento comienzan a partir de la apertura real de Atelier Haus. Si Atelier Haus no ha abierto al terminar el 6 de noviembre de 2026, te devolvemos el 100% de tu apartado.</p><div class="founder-dates"><p class="founder-deadline"><span>FECHA LÍMITE DE LA PROMOCIÓN</span>Disponible hasta el 23 de octubre o hasta completar los 5 lugares, lo que ocurra primero.</p><p class="founder-opening-date"><span>APERTURA PREVISTA</span><strong>23 de octubre de 2026</strong></p></div><a class="button button-light whatsapp founder-cta" href="https://wa.me/522207784832" data-whatsapp-message="Hola, me interesa ser Tallerista Fundador en Atelier Haus. ¿Qué horarios hay?" target="_blank" rel="noopener noreferrer">Consultar disponibilidad</a></div></div></div></section>
 
-    <section class="pricing section container" id="planes" aria-labelledby="plans-title"><div class="section-heading"><div><p class="eyebrow">HORAS PARA DARLE FORMA A TU PROYECTO</p><h2 id="plans-title">Elige cuánto<br>quieres compartir.</h2></div><div class="pricing-side"><p>Misma mensualidad, aunque el mes tenga cuatro o cinco semanas.</p><div class="pricing-toggle" role="group" aria-label="Comparar tarifas"><button type="button" data-rate="founder" aria-pressed="true">Tarifa fundador</button><button type="button" data-rate="regular" aria-pressed="false">Precio normal</button></div><p class="rate-description" id="rate-description" aria-live="polite">20% de descuento durante tus primeros 3 meses. Requiere permanecer 3 meses consecutivos.</p></div></div>
+    <section class="pricing section container" id="planes" aria-labelledby="plans-title"><div class="section-heading"><div><p class="eyebrow">HORAS PARA DARLE FORMA A TU PROYECTO</p><h2 id="plans-title">Elige cuánto<br>quieres compartir.</h2></div><div class="pricing-side"><p>Misma mensualidad, aunque el mes tenga cuatro o cinco semanas.</p><div class="pricing-toggle" data-founder-only role="group" aria-label="Comparar tarifas"><button type="button" data-rate="founder" aria-pressed="true">Tarifa fundador</button><button type="button" data-rate="regular" aria-pressed="false">Precio normal</button></div><p class="rate-description" id="rate-description" aria-live="polite">20% de descuento durante tus primeros 3 meses. Requiere permanecer 3 meses consecutivos.</p></div></div>
       <p class="plans-swipe-hint">&larr; Desliza para comparar &rarr;</p>
       <div class="plans-grid">
         <article class="plan"><p class="plan-name">Lienzo</p><h3>1 h <small>/ semana</small></h3><p class="plan-price"><span data-price data-regular="750" data-founder="600">$600</span><small>/ mes</small></p><p class="plan-mix"><span>0 h Estelar</span><span>1 h Regular</span></p><button type="button" class="calendar-plan-button" data-plan="Lienzo" data-hours="1" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Lienzo">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
@@ -233,13 +244,20 @@
     </section>
 
     <section class="faq section" id="dudas" aria-labelledby="faq-title"><div class="container faq-grid"><div><p class="eyebrow">ANTES DE DAR EL SIGUIENTE PASO</p><h2 id="faq-title">Las dudas,<br>sobre la mesa.</h2><p class="section-intro">Elige tu plan con claridad. Si tu actividad necesita algo particular, lo platicamos.</p><a class="text-link whatsapp" href="https://wa.me/522207784832" data-whatsapp-message="Hola, tengo una pregunta sobre dar clases en Atelier Haus." target="_blank" rel="noopener noreferrer">Tengo otra pregunta</a></div><div class="faq-list">
-      <details><summary>¿Tengo que pagar tres meses por adelantado?</summary><p><strong class="faq-answer-lead">No. Pagas mes a mes.</strong> Reservas con el 50% de tu primera mensualidad y cubres el resto antes de tu primera clase. La mensualidad se paga por adelantado, por transferencia o en efectivo. La tarifa fundador requiere tres meses consecutivos; después aplica el precio normal.</p></details>
-      <details><summary>¿Cómo se asignan los horarios de fundador?</summary><p><strong class="faq-answer-lead">Eliges tu agenda al confirmar tu apartado, antes de la apertura oficial.</strong> El orden de selección considera la fecha de apartado y el tamaño del plan contratado. Tu horario queda reservado únicamente para tu actividad mientras mantengas el plan activo. La prioridad de renovación aplica mientras estés al corriente.</p></details>
-      <details><summary>¿Atelier Haus me consigue alumnos?</summary><p><strong class="faq-answer-lead">Tú gestionas la publicidad directa, la venta y las inscripciones de tu actividad.</strong> Hacemos difusión básica de la comunidad y la cartelera en nuestras redes. Tu mensualidad es fija, sin importar cuántos alumnos tengas; no hay mínimo de asistentes.</p></details>
-      <details><summary>¿Qué horarios incluye mi plan?</summary><p class="faq-hours"><span><strong>Horario Estelar:</strong> lunes a viernes, 8:00–10:00 y 18:00–20:00.</span><span><strong>Horario Regular:</strong> lunes a viernes, 10:00–18:00, y sábados, 8:00–17:00.</span></p><ul class="plan-mix-list"><li><strong>Lienzo:</strong> 1 h Regular.</li><li><strong>Boceto:</strong> Hasta 1 h Estelar + 1 h Regular.</li><li><strong>Estudio:</strong> Hasta 1 h Estelar + 3 h Regulares.</li><li><strong>Atelier:</strong> Hasta 2 h Estelares + 4 h Regulares.</li><li><strong>Haus:</strong> Hasta 3 h Estelares + 5 h Regulares.</li></ul><p><strong class="faq-answer-lead">Son horas por semana, sujetas a disponibilidad.</strong> Puedes agregar horas Estelares adicionales por $150 al mes cada una, sujeto a disponibilidad. Consultamos tus horarios y confirmamos la mensualidad contigo.</p></details>
+      <template id="standard-plan-faq"><h3 class="faq-topic">Pagos y cancelaciones</h3>
+        <details><summary>¿Cómo se paga el plan?</summary><p><strong class="faq-answer-lead">Pagas mes a mes.</strong> La mensualidad se paga por adelantado, por transferencia o en efectivo.</p></details>
+        <details><summary>¿Qué pasa si necesito cancelar?</summary><p><strong class="faq-answer-lead">Avísanos con una semana de anticipación.</strong> Las sesiones canceladas por el tallerista no generan devolución; podemos buscar una reposición según disponibilidad.</p></details>
+      </template>
+      <h3 class="faq-topic" data-founder-only>Dinero y apartado</h3>
+      <details data-founder-only><summary>¿Tengo que pagar tres meses por adelantado?</summary><p><strong class="faq-answer-lead">No. Pagas mes a mes.</strong> Reservas con el 50% de tu primera mensualidad y cubres el resto antes de tu primera clase. La mensualidad se paga por adelantado, por transferencia o en efectivo. La tarifa fundador requiere tres meses consecutivos; después aplica el precio normal.</p></details>
+      <details data-founder-only><summary>¿Qué pasa si necesito cancelar?</summary><p><strong class="faq-answer-lead">Para cancelar tu plan, avísanos con una semana de anticipación.</strong> Si sales antes de completar los tres meses de fundador, por cada mes ya utilizado con descuento pagas solo la diferencia entre la tarifa fundador y el precio normal. Las sesiones canceladas por el tallerista no generan devolución; podemos buscar una reposición según disponibilidad.</p><p>El apartado no es reembolsable si cancelas por tu cuenta. Si Atelier Haus no ha abierto al terminar el 6 de noviembre de 2026, te devolvemos el 100% de tu apartado.</p></details>
+      <h3 class="faq-topic">Horarios</h3>
+      <details data-founder-only><summary>¿Cómo se asignan los horarios de fundador?</summary><p><strong class="faq-answer-lead">Eliges tu agenda al confirmar tu apartado, antes de la apertura oficial.</strong> El orden de selección considera la fecha de apartado y el tamaño del plan contratado. Tu horario queda reservado únicamente para tu actividad mientras mantengas el plan activo. La prioridad de renovación aplica mientras estés al corriente.</p></details>
+      <details><summary>¿Qué horarios incluye mi plan?</summary><p><strong class="faq-answer-lead">Las horas de cada plan son semanales y están sujetas a disponibilidad.</strong> <a class="faq-inline-link" href="#planes">Compara los cinco planes</a> y <a class="faq-inline-link" href="#plan-hours-guide">consulta los horarios Regular y Estelar</a>.</p><p>Puedes agregar horas Estelares adicionales por $150 al mes cada una, sujeto a disponibilidad. Consultamos tus horarios y confirmamos la mensualidad contigo.</p></details>
       <details><summary>¿Puedo dar una clase de dos horas seguidas?</summary><p><strong class="faq-answer-lead">Sí. Dos horas continuas te dan 1 hora y 50 minutos seguidos de actividad y una única transición de 10 minutos al final.</strong> Una sesión de una hora incluye 50 minutos de clase y 10 de transición.</p><p class="faq-example">Por ejemplo, si reservas de 16:00 a 18:00, tu clase va de 16:00 a 17:50. De 17:50 a 18:00 recoges tu material y das paso al siguiente grupo.</p></details>
-      <details><summary>¿Qué pasa si necesito cancelar?</summary><p><strong class="faq-answer-lead">Para cancelar tu plan, avísanos con una semana de anticipación.</strong> Si sales antes de completar los tres meses de fundador, los meses usados se ajustan al precio normal. Las sesiones canceladas por el tallerista no generan devolución; podemos buscar una reposición según disponibilidad.</p><p>El apartado no es reembolsable, salvo la garantía de apertura: consulta las condiciones antes de apartar.</p></details>
       <details><summary>¿Qué pasa si el espacio cierra un día?</summary><p><strong class="faq-answer-lead">Si Atelier Haus cancela una sesión por una causa imprevista, ofrecemos reposición o devolución proporcional.</strong> Los cierres por días festivos se avisan con al menos 15 días; ofrecemos reposición sujeta a disponibilidad y la mensualidad se mantiene.</p></details>
+      <h3 class="faq-topic">Alumnos y talleres</h3>
+      <details><summary>¿Atelier Haus me consigue alumnos?</summary><p><strong class="faq-answer-lead">Tú gestionas la publicidad directa, la venta y las inscripciones de tu actividad.</strong> Hacemos difusión básica de la comunidad y la cartelera en nuestras redes. Tu mensualidad es fija, sin importar cuántos alumnos tengas; no hay mínimo de asistentes.</p></details>
       <details><summary>¿Puedo impartir un taller único o una clase de prueba?</summary><p><strong class="faq-answer-lead">Los planes reservan horarios semanales recurrentes.</strong> Para una clase única, un taller intensivo o un evento especial, escríbenos y revisamos disponibilidad, principalmente los sábados y domingos. Las actividades están sujetas a aprobación de Atelier Haus. Como regla general, aceptamos hasta dos talleristas activos por disciplina; si tu propuesta tiene otro enfoque, nivel, público o formato, lo platicamos. El plan no da exclusividad.</p></details>
     </div></div></section>
 
@@ -298,6 +316,6 @@
   <a class="whatsapp-fab whatsapp" href="https://wa.me/522207784832" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp" data-visible="false">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <script src="script.js?v=desktop-fab-4" defer></script>
+  <script src="script.js?v=founder-expiry-1" defer></script>
 </body>
 </html>

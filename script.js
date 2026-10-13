@@ -1,5 +1,11 @@
 'use strict';
 document.body.classList.add('js');
+const founderOfferClosed=document.documentElement.dataset.founderOffer==='closed';
+if(founderOfferClosed){
+  const standardFaq=document.querySelector('#standard-plan-faq');
+  document.querySelectorAll('[data-founder-only]').forEach(element=>element.remove());
+  standardFaq.replaceWith(standardFaq.content.cloneNode(true));
+}
 const phone='522207784832';
 const generalWhatsappMessage='Hola, quiero dar clases en Atelier Haus. ¿Me platican más?';
 document.querySelectorAll('.whatsapp').forEach(link=>{
@@ -7,7 +13,7 @@ document.querySelectorAll('.whatsapp').forEach(link=>{
   link.href=`https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 });
 
-let selectedRate='founder';
+let selectedRate=founderOfferClosed?'regular':'founder';
 const rates=document.querySelectorAll('[data-rate]');
 const formatMXN=new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
 function updatePlans(){
@@ -15,10 +21,13 @@ function updatePlans(){
   document.querySelectorAll('[data-price]').forEach(price=>{price.textContent=formatMXN.format(Number(price.dataset[selectedRate]));});
   document.getElementById('rate-description').textContent=selectedRate==='founder'
     ?'20% de descuento durante tus primeros 3 meses. Requiere permanecer 3 meses consecutivos.'
-    :'Precio normal, con pago mes a mes. Sin permanencia de 3 meses; avisa con una semana de anticipación para cancelar.';
+    :founderOfferClosed
+      ?'Precio normal, con pago mes a mes. Avisa con una semana de anticipación para cancelar.'
+      :'Precio normal, con pago mes a mes. Sin permanencia de 3 meses; avisa con una semana de anticipación para cancelar.';
 }
 rates.forEach(button=>button.addEventListener('click',()=>{selectedRate=button.dataset.rate;updatePlans();}));
 updatePlans();
+document.documentElement.classList.add('rates-ready');
 
 const menu=document.querySelector('.menu-toggle');
 const nav=document.getElementById('main-nav');
