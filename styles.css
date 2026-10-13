@@ -728,10 +728,16 @@ body .top-alert-banner .badge,
   .space-service span{font-size:1rem}
 }
 @media(max-width:480px){
-  .space-services-list{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:16px}
+  .space-services-list{grid-template-columns:repeat(6,minmax(0,1fr));gap:18px 8px}
+  .space-service{grid-column:span 2;grid-template-rows:24px auto;align-items:start;padding-inline:2px}
+  .space-service svg{align-self:center}
+  .space-service:nth-child(4){grid-column:2/span 2}
+  .space-service:nth-child(5){grid-column:4/span 2}
 }
 @media(max-width:390px){
   .space-services-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .space-service,.space-service:nth-child(4){grid-column:auto}
+  .space-service:nth-child(5){grid-column:1/-1;justify-self:center;width:calc(50% - 4px)}
 }
 @media(max-width:360px){
   .space-benefits-grid{grid-template-columns:1fr}
@@ -894,6 +900,7 @@ dialog.calendar-demo .calendar-body{padding:28px;border-top:0}
 dialog.calendar-demo .calendar-disclaimer{padding:20px 28px 24px}
 
 @media(max-width:760px){
+  body.mobile-contact-visible .nav-actions>.button{display:none}
   .plans-swipe-hint{display:block;margin:0 0 2px;text-align:center;color:var(--muted);font-size:.875rem;line-height:1.5}
   .plans-grid{
     display:flex;

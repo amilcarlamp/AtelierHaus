@@ -45,12 +45,16 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.getAtt
 
 const mobileContact=document.querySelector('.mobile-contact');
 const heroPrimaryCta=document.querySelector('.hero-primary-cta');
+function setMobileContactVisible(visible){
+  mobileContact.dataset.visible=String(visible);
+  document.body.classList.toggle('mobile-contact-visible',visible);
+}
 if('IntersectionObserver' in window && heroPrimaryCta){
   const mobileContactObserver=new IntersectionObserver(entries=>{
-    mobileContact.dataset.visible=String(!entries[0].isIntersecting);
+    setMobileContactVisible(!entries[0].isIntersecting);
   },{threshold:0.1});
   mobileContactObserver.observe(heroPrimaryCta);
-}else{mobileContact.dataset.visible='true';}
+}else{setMobileContactVisible(true);}
 
 const desktopWhatsappFab=document.querySelector('.whatsapp-fab');
 const heroSection=document.querySelector('#inicio');
