@@ -28,62 +28,65 @@
       background-color: var(--ink, #1a1a1a);
       color: var(--paper, #f6f4f0);
       text-align: center;
-      padding: 10px 20px;
-      font-size: 0.875rem;
+      padding: 6px 16px;
+      min-height: 32px;
+      font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.01em;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       position: relative;
       z-index: 50;
+      text-decoration: none;
+      line-height: 1.25;
+      transition: color 0.2s ease;
     }
     .top-alert-banner strong {
       font-weight: 600;
-      color: #dfdbce;
+      color: inherit;
     }
     .top-alert-banner .badge {
-      background-color: #8b3325;
-      color: #ffffff;
-      padding: 4px 10px;
-      border-radius: 999px;
+      color: #dfe3da;
       font-size: 0.6875rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      animation: badgePulse 2s infinite ease-in-out;
+      letter-spacing: 0.08em;
     }
-    .top-alert-banner span:not(.badge) {
-      animation: textFade 3s infinite ease-in-out;
+    .top-alert-copy {
+      white-space: nowrap;
     }
-    @keyframes badgePulse {
-      0% { transform: scale(1); background-color: #8b3325; }
-      50% { transform: scale(1.06); background-color: #bd4330; }
-      100% { transform: scale(1); background-color: #8b3325; }
+    .top-alert-arrow {
+      flex: none;
+      transition: transform 0.2s ease;
     }
-    @keyframes textFade {
-      0% { opacity: 1; }
-      50% { opacity: 0.75; }
-      100% { opacity: 1; }
+    .top-alert-banner:hover,
+    .top-alert-banner:focus-visible {
+      color: #dfe3da;
+    }
+    .top-alert-banner:hover .top-alert-arrow,
+    .top-alert-banner:focus-visible .top-alert-arrow {
+      transform: translateX(2px);
     }
     @media (max-width: 760px) {
       .top-alert-banner {
-        flex-direction: column;
-        padding: 12px 16px;
-        font-size: 0.8125rem;
-        gap: 8px;
-        line-height: 1.4;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        gap: 6px;
       }
       .top-alert-banner .badge {
         font-size: 0.65rem;
       }
     }
+    @media (max-width: 350px) {
+      .top-alert-copy {
+        max-width: 255px;
+        white-space: normal;
+      }
+    }
   </style>
-  <div class="top-alert-banner">
-    <span class="badge">Últimos días</span>
-    <span>Convocatoria <strong>Tallerista Fundador</strong> cierra el 16 de octubre</span>
-  </div>
+  <a class="top-alert-banner" href="#fundadores" aria-label="Últimos días: Tallerista Fundador hasta el 16 de octubre. Ir a la promoción."><span class="top-alert-copy"><span class="badge">Últimos días</span><span aria-hidden="true"> · </span><strong>Tallerista Fundador</strong> hasta el 16 OCT</span><span class="top-alert-arrow" aria-hidden="true">→</span></a>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header class="site-header"><div class="container nav-wrap">
     <a class="brand" href="#inicio" aria-label="Atelier Haus, inicio"><img src="./wordmark.png" width="1300" height="347" alt="Atelier Haus, foro creativo"></a>
@@ -141,10 +144,15 @@
         </article>
 
         <article class="space-benefit-card">
-          <span class="space-benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M8.5 16a6 6 0 0 1 7 0"></path><path d="M12 20h.01"></path></svg></span>
           <p class="feature-group-label">SERVICIOS INCLUIDOS</p>
           <h3>Lo cotidiano, resuelto</h3>
-          <p>Agua, electricidad, internet, limpieza general y recepción básica incluidos.</p>
+          <ul class="space-services-list" role="list" aria-label="Servicios incluidos">
+            <li class="space-service"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.7S6 9.2 6 14a6 6 0 0 0 12 0c0-4.8-6-11.3-6-11.3Z"></path></svg><span>Agua</span></li>
+            <li class="space-service"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m13 2-9 12h8l-1 8 9-12h-8l1-8Z"></path></svg><span>Electricidad</span></li>
+            <li class="space-service"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M8.5 16a6 6 0 0 1 7 0"></path><path d="M12 20h.01"></path></svg><span>Internet</span></li>
+            <li class="space-service"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 .8 2.2L15 6l-2.2.8L12 9l-.8-2.2L9 6l2.2-.8L12 3Z"></path><path d="m5 11 1.1 2.9L9 15l-2.9 1.1L5 19l-1.1-2.9L1 15l2.9-1.1L5 11Z"></path><path d="m18 12 .8 2.2L21 15l-2.2.8L18 18l-.8-2.2L15 15l2.2-.8L18 12Z"></path></svg><span>Limpieza general</span></li>
+            <li class="space-service"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 15a6 6 0 0 0-12 0"></path><path d="M4 15h16"></path><path d="M12 3v2"></path><path d="M3 19h18"></path></svg><span>Recepción básica</span></li>
+          </ul>
         </article>
       </div>
 
@@ -156,29 +164,35 @@
         </div></div>
       </div>
 
-      <div class="space-autonomy"><p class="feature-group-label">AUTONOMÍA Y SIN COMISIONES</p><div><h3>Tu actividad, a tu manera</h3><p>Tú convocas a tus alumnos, decides tus precios y conservas el 100% de tus ingresos.</p></div></div>
+      <div class="space-autonomy"><p class="feature-group-label">AUTONOMÍA Y SIN COMISIONES</p><div><h3>Tu actividad, a tu manera</h3><div class="space-autonomy-points"><div class="space-autonomy-point"><strong>TUS ALUMNOS</strong><span>Tú los convocas.</span></div><div class="space-autonomy-point"><strong>TUS PRECIOS</strong><span>Tú los decides.</span></div><div class="space-autonomy-point"><strong>100% PARA TI</strong><span>Atelier Haus no cobra comisión.</span></div></div></div></div>
     </section>
 
-    <section class="how section" aria-labelledby="how-title"><div class="container"><div class="section-heading"><div><p class="eyebrow">UN HORARIO. TU PROYECTO.</p><h2 id="how-title">Llegas, enseñas, compartes.</h2></div><p>Tu plan reserva el mismo día y la misma hora cada semana.</p></div><div class="steps"><article><span>01</span><h3>Elige tu horario</h3><p>Cuéntanos qué quieres impartir y revisamos la disponibilidad para tu grupo.</p></article><article><span>02</span><h3>Haz tuyo el momento</h3><p>El espacio estará equipado para recibirte. Tú diriges la clase y gestionas tus inscripciones.</p></article><article><span>03</span><h3>Cobra directamente</h3><p>Define tus precios y tu forma de pago. Atelier Haus no cobra comisión sobre tus ingresos.</p></article></div><div class="session-strip"><p>Una hora reservada,<br><strong>bien organizada.</strong></p><div class="session-bar"><span><b>50 min</b> de actividad</span><span><b>10 min</b> de transición</span></div><p class="session-note">Entrada, salida y acomodo<br>sin invadir el siguiente horario.</p></div><p class="session-continuous"><strong>¿Dos horas seguidas?</strong> Tienes 1 h 50 min de clase continua y 10 min de transición al final.</p></div></section>
+    <section class="how section" aria-labelledby="how-title"><div class="container"><div class="section-heading"><div><p class="eyebrow">UN HORARIO. TU PROYECTO.</p><h2 id="how-title">Llegas, enseñas, compartes.</h2></div><p>Tu plan reserva el mismo día y la misma hora cada semana.</p></div><div class="steps"><article><span>01</span><h3>Elige tu horario</h3><p>Dinos qué impartes y revisamos los horarios disponibles.</p></article><article><span>02</span><h3>Llega y da tu clase</h3><p>El espacio estará equipado; tú diriges tu clase.</p></article><article><span>03</span><h3>Cobra directamente</h3><p>Tú defines precios y cobros. Atelier Haus no cobra comisión.</p></article></div><div class="session-strip"><p>Una hora reservada,<br><strong>bien organizada.</strong></p><div class="session-bar"><span><b>50 min</b> de actividad</span><span><b>10 min</b> de transición</span></div><p class="session-note">Entrada, salida y acomodo<br>sin invadir el siguiente horario.</p></div></div></section>
 
     <section class="founders section" id="fundadores" aria-labelledby="founders-title"><div class="container"><div class="founders-grid">
       <div class="founder-intro"><p class="eyebrow">SOLO 5 LUGARES</p><h2 id="founders-title">Tallerista<br>Fundador</h2><p class="section-intro">Sé de las primeras personas en dar clases en Atelier Haus y conserva beneficios especiales durante tus primeros meses.</p></div>
       <div class="founder-benefits"><div class="discount"><span>20<small>%</small></span><div class="discount-copy"><span class="discount-kicker">BENEFICIO PRINCIPAL</span><p>menos durante tus primeros <strong>3 meses</strong></p></div></div><ul><li><strong>Prioridad para elegir horario</strong><span>Elige antes que nadie entre los horarios disponibles.</span></li><li><strong>Participación en la inauguración</strong><span>Forma parte de la apertura de Atelier Haus.</span></li><li><strong>Difusión de tu actividad</strong><span>Presentaremos tu clase o taller en nuestros canales para ayudarte a darla a conocer.</span></li></ul></div>
     </div><div class="opening-guarantee"><div class="guarantee-mark" aria-hidden="true">50<span>%<br>APARTADO</span></div><div class="guarantee-content"><p class="guarantee-kicker">APARTADO Y CONDICIONES</p><h3>Aparta con el 50% de tu primera mensualidad</h3><p>Tu mensualidad y tu descuento comienzan a partir de la apertura real de Atelier Haus.</p><div class="founder-dates"><p class="founder-deadline"><span>FECHA LÍMITE DE LA PROMOCIÓN</span>Disponible hasta el 16 de octubre o hasta completar los 5 lugares, lo que ocurra primero.</p><p class="founder-opening-date"><span>APERTURA PREVISTA</span><strong>23 de octubre de 2026</strong></p></div><a class="button button-light whatsapp founder-cta" href="https://wa.me/522207784832" data-whatsapp-message="Hola, me interesa ser Tallerista Fundador en Atelier Haus. ¿Qué horarios hay?" target="_blank" rel="noopener noreferrer">Consultar disponibilidad</a></div></div></div></section>
 
-    <section class="pricing section container" id="planes" aria-labelledby="plans-title"><div class="section-heading"><div><p class="eyebrow">HORAS PARA DARLE FORMA A TU PROYECTO</p><h2 id="plans-title">Elige cuánto<br>quieres compartir.</h2></div><div class="pricing-side"><p>Misma mensualidad, aunque el mes tenga cuatro o cinco semanas.</p><div class="pricing-toggle" role="group" aria-label="Comparar tarifas"><button type="button" data-rate="founder" aria-pressed="true">Tarifa fundador</button><button type="button" data-rate="regular" aria-pressed="false">Precio normal</button></div></div></div>
-      <p class="rate-description" id="rate-description" aria-live="polite">20% de descuento durante tus primeros 3 meses. Requiere permanecer 3 meses consecutivos.</p>
-      <div class="plan-hours-guide" aria-label="Horarios Regular y Estelar">
-        <div><strong>REGULAR</strong><span>L–V · 10:00–18:00</span><span>Sáb · 8:00–17:00</span></div>
-        <div><strong>ESTELAR</strong><span>L–V · 8:00–10:00</span><span>L–V · 18:00–20:00</span></div>
-      </div>
+    <section class="pricing section container" id="planes" aria-labelledby="plans-title"><div class="section-heading"><div><p class="eyebrow">HORAS PARA DARLE FORMA A TU PROYECTO</p><h2 id="plans-title">Elige cuánto<br>quieres compartir.</h2></div><div class="pricing-side"><p>Misma mensualidad, aunque el mes tenga cuatro o cinco semanas.</p><div class="pricing-toggle" role="group" aria-label="Comparar tarifas"><button type="button" data-rate="founder" aria-pressed="true">Tarifa fundador</button><button type="button" data-rate="regular" aria-pressed="false">Precio normal</button></div><p class="rate-description" id="rate-description" aria-live="polite">20% de descuento durante tus primeros 3 meses. Requiere permanecer 3 meses consecutivos.</p></div></div>
+      <p class="plans-swipe-hint">&larr; Desliza para comparar &rarr;</p>
       <div class="plans-grid">
-        <article class="plan"><p class="plan-name">Lienzo</p><h3>1 hora <small>/ semana</small></h3><p class="plan-description">Un primer espacio para tu actividad.</p><p class="plan-mix">1 h Regular<small>por semana</small></p><p class="plan-price"><span data-price data-regular="750" data-founder="600">$600</span><small>/ mes</small></p><button type="button" class="calendar-plan-button" data-plan="Lienzo" data-hours="1" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Lienzo">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
-        <article class="plan"><p class="plan-name">Boceto</p><h3>2 horas <small>/ semana</small></h3><p class="plan-description">Más tiempo para enseñar y crear.</p><p class="plan-mix">Hasta 1 h Estelar + 1 h Regular<small>por semana</small></p><p class="plan-price"><span data-price data-regular="1400" data-founder="1120">$1,120</span><small>/ mes</small></p><button type="button" class="calendar-plan-button" data-plan="Boceto" data-hours="2" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Boceto">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
-        <article class="plan plan-featured"><span class="recommended-badge">Recomendado</span><p class="plan-name">Estudio</p><h3>4 horas <small>/ semana</small></h3><p class="plan-description">Para dar continuidad a tu proyecto.</p><p class="plan-mix">Hasta 1 h Estelar + 3 h Regulares<small>por semana</small></p><p class="plan-price"><span data-price data-regular="2600" data-founder="2080">$2,080</span><small>/ mes</small></p><button type="button" class="calendar-plan-button" data-plan="Estudio" data-hours="4" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="true" aria-label="Simular mi mes con el plan Estudio">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
-        <article class="plan"><p class="plan-name">Atelier</p><h3>6 horas <small>/ semana</small></h3><p class="plan-description">Espacio para más sesiones o grupos.</p><p class="plan-mix">Hasta 2 h Estelares + 4 h Regulares<small>por semana</small></p><p class="plan-price"><span data-price data-regular="3750" data-founder="3000">$3,000</span><small>/ mes</small></p><button type="button" class="calendar-plan-button" data-plan="Atelier" data-hours="6" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Atelier">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
-        <article class="plan"><p class="plan-name">Haus</p><h3>8 horas <small>/ semana</small></h3><p class="plan-description">Más presencia para tu actividad.</p><p class="plan-mix">Hasta 3 h Estelares + 5 h Regulares<small>por semana</small></p><p class="plan-price"><span data-price data-regular="4800" data-founder="3840">$3,840</span><small>/ mes</small></p><button type="button" class="calendar-plan-button" data-plan="Haus" data-hours="8" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Haus">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
-      </div><p class="plans-note">Precios mensuales en MXN. Horarios fijos sujetos a disponibilidad.</p>
+        <article class="plan"><p class="plan-name">Lienzo</p><h3>1 h <small>/ semana</small></h3><p class="plan-price"><span data-price data-regular="750" data-founder="600">$600</span><small>/ mes</small></p><p class="plan-mix"><span>0 h Estelar</span><span>1 h Regular</span></p><button type="button" class="calendar-plan-button" data-plan="Lienzo" data-hours="1" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Lienzo">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
+        <article class="plan"><p class="plan-name">Boceto</p><h3>2 h <small>/ semana</small></h3><p class="plan-price"><span data-price data-regular="1400" data-founder="1120">$1,120</span><small>/ mes</small></p><p class="plan-mix"><span>Hasta 1 h Estelar</span><span>1 h Regular</span></p><button type="button" class="calendar-plan-button" data-plan="Boceto" data-hours="2" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Boceto">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
+        <article class="plan plan-featured"><span class="recommended-badge">Recomendado</span><p class="plan-name">Estudio</p><h3>4 h <small>/ semana</small></h3><p class="plan-price"><span data-price data-regular="2600" data-founder="2080">$2,080</span><small>/ mes</small></p><p class="plan-mix"><span>Hasta 1 h Estelar</span><span>3 h Regulares</span></p><button type="button" class="calendar-plan-button" data-plan="Estudio" data-hours="4" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="true" aria-label="Simular mi mes con el plan Estudio">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
+        <article class="plan"><p class="plan-name">Atelier</p><h3>6 h <small>/ semana</small></h3><p class="plan-price"><span data-price data-regular="3750" data-founder="3000">$3,000</span><small>/ mes</small></p><p class="plan-mix"><span>Hasta 2 h Estelares</span><span>4 h Regulares</span></p><button type="button" class="calendar-plan-button" data-plan="Atelier" data-hours="6" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Atelier">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
+        <article class="plan"><p class="plan-name">Haus</p><h3>8 h <small>/ semana</small></h3><p class="plan-price"><span data-price data-regular="4800" data-founder="3840">$3,840</span><small>/ mes</small></p><p class="plan-mix"><span>Hasta 3 h Estelares</span><span>5 h Regulares</span></p><button type="button" class="calendar-plan-button" data-plan="Haus" data-hours="8" aria-controls="calendar-demo" aria-haspopup="dialog" aria-pressed="false" aria-label="Simular mi mes con el plan Haus">Simular mi mes <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11 11 5"></path><path d="M5 5h6v6"></path></svg></button></article>
+      </div>
+      <a class="plan-hours-prompt" href="#plan-hours-guide">¿Qué significan Regular y Estelar? <span aria-hidden="true">↓</span></a>
+      <div class="plan-hours-guide" id="plan-hours-guide" aria-labelledby="plan-hours-title">
+        <h3 id="plan-hours-title">¿Qué son los horarios Regular y Estelar?</h3>
+        <p>Cada plan incluye horas Regulares y, según el plan, hasta cierto número de horas Estelares. Los horarios están sujetos a disponibilidad.</p>
+        <div class="plan-hours-types">
+          <div><strong>REGULAR</strong><small>Mayor disponibilidad</small><span>L–V · 10:00–18:00</span><span>Sáb · 8:00–17:00</span></div>
+          <div><strong>ESTELAR</strong><small>Horarios más solicitados</small><span>L–V · 8:00–10:00</span><span>L–V · 18:00–20:00</span></div>
+        </div>
+      </div>
+      <p class="plans-note">Precios mensuales en MXN. Horarios fijos sujetos a disponibilidad.</p>
       <dialog class="calendar-demo" id="calendar-demo" aria-labelledby="calendar-demo-title">
         <div class="calendar-demo-header">
           <div>
@@ -215,7 +229,7 @@
         <p class="calendar-disclaimer" id="calendar-demo-disclaimer">Es un ejemplo de un mes completo. Tus días y horas reales se acuerdan por WhatsApp. No muestra disponibilidad ni contempla cierres por días festivos.</p>
       </dialog>
 
-      <div class="schedule"><div><p class="eyebrow">HORARIOS DEL ESPACIO</p><p><strong>Lunes a viernes</strong><span>8:00 a. m. a 8:00 p. m.</span></p><p><strong>Sábados</strong><span>8:00 a. m. a 5:00 p. m.</span></p></div><p>Domingos: eventos y actividades especiales con reservación previa. Consulta disponibilidad para tu propuesta.</p></div>
+      <div class="schedule"><p class="eyebrow">HORARIOS DEL ESPACIO</p><p class="schedule-summary"><span><strong><abbr title="Lunes a viernes">L–V</abbr></strong> 8:00–20:00</span><span class="schedule-separator" aria-hidden="true">·</span><span><strong><abbr title="Sábados">Sáb</abbr></strong> 8:00–17:00</span><span class="schedule-separator" aria-hidden="true">·</span><span><strong><abbr title="Domingos">Dom</abbr></strong>: eventos y actividades especiales con reservación previa, según disponibilidad.</span></p></div>
     </section>
 
     <section class="faq section" id="dudas" aria-labelledby="faq-title"><div class="container faq-grid"><div><p class="eyebrow">ANTES DE DAR EL SIGUIENTE PASO</p><h2 id="faq-title">Las dudas,<br>sobre la mesa.</h2><p class="section-intro">Elige tu plan con claridad. Si tu actividad necesita algo particular, lo platicamos.</p><a class="text-link whatsapp" href="https://wa.me/522207784832" data-whatsapp-message="Hola, tengo una pregunta sobre dar clases en Atelier Haus." target="_blank" rel="noopener noreferrer">Tengo otra pregunta</a></div><div class="faq-list">
@@ -248,8 +262,20 @@
       border-radius: 50%;
       box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
       text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
     }
-    .whatsapp-fab:hover {
+    .whatsapp-fab[data-visible="true"] {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+    .whatsapp-fab[data-visible="true"]:hover {
       transform: translateY(-3px);
     }
     .whatsapp-fab svg {
@@ -263,10 +289,15 @@
         display: none;
       }
     }
+    @media (prefers-reduced-motion: reduce) {
+      .whatsapp-fab {
+        transition: none;
+      }
+    }
   </style>
-  <a class="whatsapp-fab whatsapp" href="https://wa.me/522207784832" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+  <a class="whatsapp-fab whatsapp" href="https://wa.me/522207784832" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp" data-visible="false">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <script src="script.js?v=conversion-1" defer></script>
+  <script src="script.js?v=desktop-fab-4" defer></script>
 </body>
 </html>

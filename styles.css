@@ -235,15 +235,24 @@
   .opening-guarantee .founder-deadline{font-size:.8125rem;margin-top:16px}
 }
 
-/* Plan hours guide before pricing cards */
-.plan-hours-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;max-width:680px;border-block:1px solid var(--line);padding:16px 0;margin:4px 0 30px}
-.plan-hours-guide>div{display:grid;grid-template-columns:88px minmax(0,1fr);column-gap:18px;row-gap:4px;align-items:start}
-.plan-hours-guide strong{grid-row:span 2;font-size:.75rem;letter-spacing:.12em;line-height:1.6;color:var(--olive-dark)}
-.plan-hours-guide span{font-size:.875rem;color:var(--muted);line-height:1.55}
+/* Supporting information follows the plan comparison. */
+.pricing-side .rate-description{min-height:0;max-width:360px;margin-top:10px;font-size:.8125rem;line-height:1.5;color:var(--muted)}
+.plan-hours-prompt{display:inline-block;margin-top:18px;font-size:.875rem;color:var(--olive-dark);border-bottom:1px solid currentColor;line-height:1.5}
+.plan-hours-prompt span{margin-left:4px}
+.plan-hours-guide{border-block:1px solid var(--line);padding:20px 0;margin-top:15px}
+.plan-hours-guide h3{font-size:1.125rem;line-height:1.3}
+.plan-hours-guide>p{margin-top:6px;color:var(--muted);font-size:.875rem;line-height:1.6}
+.plan-hours-types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:16px;max-width:760px}
+.plan-hours-types>div{display:grid;grid-template-columns:92px minmax(0,1fr);column-gap:14px;row-gap:2px;align-items:start}
+.plan-hours-types strong{grid-row:span 3;font-size:.75rem;letter-spacing:.12em;line-height:1.6;color:var(--olive-dark)}
+.plan-hours-types small{font-size:.8125rem;color:var(--muted);line-height:1.55}
+.plan-hours-types span{font-size:.875rem;color:var(--muted);line-height:1.55}
 @media(max-width:760px){
-  .plan-hours-guide{grid-template-columns:1fr;gap:12px;padding:14px 0;margin:0 0 24px}
-  .plan-hours-guide>div{grid-template-columns:82px minmax(0,1fr);column-gap:14px}
-  .plan-hours-guide strong{font-size:.7rem}
+  .plan-hours-prompt{font-size:1rem}
+  .plan-hours-guide{padding:18px 0;margin-top:12px}
+  .plan-hours-guide>p,.plan-hours-types small{font-size:1rem}
+  .plan-hours-types{grid-template-columns:1fr;gap:12px}
+  .plan-hours-types>div{grid-template-columns:82px minmax(0,1fr);column-gap:12px}
 }
 
 .footer-slogan{font-size:1rem;font-weight:600;line-height:1.45;color:var(--ink)}
@@ -306,10 +315,20 @@
 .session-bar b{font-size:1.35rem;font-weight:700}
 @media(max-width:350px){.session-bar span:last-child{border-top:1px solid #aeb4a5;border-left:0}}
 
-/* Align Sunday details with the first weekday schedule row. */
-.schedule{align-items:start}
-.schedule>p{margin-top:33px}
-@media(max-width:760px){.schedule>p{margin-top:0}}
+/* Compact operating hours after the pricing cards. */
+.schedule{display:flex;grid-template-columns:none;align-items:baseline;gap:28px;padding-block:20px;margin-top:34px}
+.schedule .eyebrow{flex:none;margin:0}
+.schedule>p{max-width:none;margin:0}
+.schedule-summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px 10px;color:var(--muted);font-size:.875rem;line-height:1.6}
+.schedule-summary strong{color:var(--ink);font-weight:600}
+.schedule-summary abbr{text-decoration:none}
+.schedule-separator{color:var(--olive-dark)}
+@media(max-width:760px){
+  .schedule{flex-direction:column;align-items:flex-start;gap:10px;padding-block:18px;margin-top:28px}
+  .schedule-summary{gap:3px 8px;font-size:1rem;line-height:1.6}
+  .schedule-summary span:last-child{flex-basis:100%}
+  .schedule-summary .schedule-separator:nth-child(4){display:none}
+}
 
 /* Plan cards: clearer hierarchy while preserving the existing layout. */
 .plan{height:100%;padding:30px 22px 24px}
@@ -317,12 +336,17 @@
 .plan h3{font-size:2.15rem;line-height:1.08;letter-spacing:-.05em;font-weight:500}
 .plan h3 small{margin-top:7px;color:var(--olive-dark);font-size:.8125rem;font-weight:600}
 .plan-description{min-height:72px;margin-top:20px;color:var(--muted);font-size:.875rem;line-height:1.6}
-.plan-mix{min-height:86px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:.8125rem;color:var(--olive-dark)}
+.plan-mix{display:grid;gap:5px;min-height:76px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:.8125rem;color:var(--olive-dark);line-height:1.45}
+.plan-mix span{display:block}
 .plan-mix small{font-size:.75rem}
 .plan-price{margin-top:auto;padding-top:22px;border-top:1px solid var(--line);font-size:2.35rem;font-weight:600;line-height:1.15}
 .plan-price small{font-size:.8125rem;font-weight:500}
 .plan .button{margin-top:20px}
 .js .calendar-plan-button{margin-top:12px}
+.pricing .plan-price{margin-top:18px;padding-top:18px}
+.pricing .plan-mix{min-height:62px;margin-top:12px;padding-top:0;border-top:0;color:var(--muted)}
+.pricing .calendar-plan-button{margin-top:auto}
+.plans-swipe-hint{display:none}
 
 @media(max-width:1120px){
   .plan{padding:27px 16px 22px}
@@ -621,6 +645,10 @@ body .top-alert-banner .badge,
 .space-benefit-icon{display:grid;place-items:center;width:34px;height:34px;margin-bottom:20px;color:var(--olive-dark)}
 .space-benefit-icon svg{display:block;max-width:none}
 .space-benefit-icon+.feature-group-label{margin-top:0}
+.space-services-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:18px 0 0;padding:0;list-style:none}
+.space-service{display:grid;justify-items:center;align-content:start;gap:8px;min-width:0;color:var(--muted);text-align:center}
+.space-service svg{display:block;width:20px;height:20px;fill:none;stroke:var(--olive-dark);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.space-service span{font-size:.8125rem;line-height:1.35;overflow-wrap:anywhere}
 .space-benefit-capacity{grid-column:1;grid-row:1/4;background:var(--olive-dark);color:var(--paper);border-color:var(--olive-dark)}
 .space-benefit-capacity .feature-group-label{color:#dfe3da}
 .space-benefit-capacity h3{color:var(--paper)}
@@ -653,6 +681,11 @@ body .top-alert-banner .badge,
 .space-autonomy .feature-group-label{color:var(--olive-dark)}
 .space-autonomy h3{font-size:1.15rem;line-height:1.35}
 .space-autonomy div>p{max-width:700px;margin-top:8px;color:var(--muted);font-size:.9375rem;line-height:1.7}
+.space-autonomy-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:18px}
+.space-autonomy-point{display:grid;align-content:start;gap:5px;min-width:0;padding:0 18px;border-left:1px solid var(--line)}
+.space-autonomy-point:first-child{padding-left:0;border-left:0}
+.space-autonomy-point strong{color:var(--olive-dark);font-size:.75rem;line-height:1.4;letter-spacing:.08em}
+.space-autonomy-point span{color:var(--muted);font-size:.875rem;line-height:1.5}
 
 @media(max-width:900px){
   .space-benefits-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -669,6 +702,16 @@ body .top-alert-banner .badge,
   .equipment-toggle{min-height:56px}
   .equipment-details-heading{padding-top:20px}
   .space-autonomy{grid-template-columns:1fr;gap:9px;padding-top:20px}
+  .space-autonomy-points{margin-top:15px}
+  .space-autonomy-point{padding-inline:12px}
+  .space-autonomy-point span{font-size:1rem}
+  .space-service span{font-size:1rem}
+}
+@media(max-width:480px){
+  .space-services-list{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:16px}
+}
+@media(max-width:390px){
+  .space-services-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:360px){
   .space-benefits-grid{grid-template-columns:1fr}
@@ -831,6 +874,7 @@ dialog.calendar-demo .calendar-body{padding:28px;border-top:0}
 dialog.calendar-demo .calendar-disclaimer{padding:20px 28px 24px}
 
 @media(max-width:760px){
+  .plans-swipe-hint{display:block;margin:0 0 2px;text-align:center;color:var(--muted);font-size:.875rem;line-height:1.5}
   .plans-grid{
     display:flex;
     grid-template-columns:none;

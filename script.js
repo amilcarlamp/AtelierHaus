@@ -36,6 +36,42 @@ if('IntersectionObserver' in window && heroPrimaryCta){
   mobileContactObserver.observe(heroPrimaryCta);
 }else{mobileContact.dataset.visible='true';}
 
+const desktopWhatsappFab=document.querySelector('.whatsapp-fab');
+const heroSection=document.querySelector('#inicio');
+const contactSection=document.querySelector('#contacto');
+const desktopViewport=window.matchMedia('(min-width: 761px)');
+let heroInView=true;
+let contactCtaInView=false;
+function updateDesktopWhatsappFab(){
+  desktopWhatsappFab.dataset.visible=String(desktopViewport.matches&&!heroInView&&!contactCtaInView);
+}
+if('IntersectionObserver' in window&&heroSection&&contactSection){
+  const desktopWhatsappObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.target===heroSection)heroInView=entry.isIntersecting;
+      if(entry.target===contactSection)contactCtaInView=entry.isIntersecting;
+    });
+    updateDesktopWhatsappFab();
+  },{threshold:0});
+  desktopWhatsappObserver.observe(heroSection);
+  desktopWhatsappObserver.observe(contactSection);
+}else{
+  const updateDesktopWhatsappFallback=()=>{
+    heroInView=window.scrollY<heroSection.offsetTop+heroSection.offsetHeight;
+    const contactRect=contactSection.getBoundingClientRect();
+    contactCtaInView=contactRect.top<window.innerHeight&&contactRect.bottom>0;
+    updateDesktopWhatsappFab();
+  };
+  window.addEventListener('scroll',updateDesktopWhatsappFallback,{passive:true});
+  updateDesktopWhatsappFallback();
+}
+if(desktopViewport.addEventListener){
+  desktopViewport.addEventListener('change',updateDesktopWhatsappFab);
+}else{
+  desktopViewport.addListener(updateDesktopWhatsappFab);
+}
+updateDesktopWhatsappFab();
+
 const equipmentToggle = document.querySelector('.equipment-toggle');
 const equipmentPanel = document.querySelector('#equipment-details-panel');
 const equipmentToggleLabel = equipmentToggle.querySelector('.equipment-toggle-label');
