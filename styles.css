@@ -344,6 +344,12 @@
 .plan .button{margin-top:20px}
 .js .calendar-plan-button{margin-top:12px}
 .pricing .plan-price{margin-top:18px;padding-top:18px}
+.pricing .plan-price{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.plan-price-amount{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.plan-price-label{font-size:.6875rem;font-weight:700;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:var(--olive-dark)}
+.plan-price-standard{font-size:.8125rem;font-weight:500;line-height:1.5;letter-spacing:0;color:var(--muted)}
+.plan-price-standard s{margin-left:4px;text-decoration-thickness:1px}
+.plan-price-label[hidden],.plan-price-standard[hidden]{display:none}
 .pricing .plan-mix{min-height:62px;margin-top:12px;padding-top:0;border-top:0;color:var(--muted)}
 .pricing .calendar-plan-button{margin-top:auto}
 .plans-swipe-hint{display:none}

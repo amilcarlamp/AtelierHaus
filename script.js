@@ -18,7 +18,14 @@ const rates=document.querySelectorAll('[data-rate]');
 const formatMXN=new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
 function updatePlans(){
   rates.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.rate===selectedRate)));
-  document.querySelectorAll('[data-price]').forEach(price=>{price.textContent=formatMXN.format(Number(price.dataset[selectedRate]));});
+  document.querySelectorAll('[data-price]').forEach(price=>{
+    price.textContent=formatMXN.format(Number(price.dataset[selectedRate]));
+    const comparison=price.closest('.plan-price').querySelector('[data-price-regular]');
+    if(comparison) comparison.textContent=formatMXN.format(Number(price.dataset.regular));
+  });
+  document.querySelectorAll('.plan-price-label, .plan-price-standard').forEach(element=>{
+    element.hidden=selectedRate!=='founder';
+  });
   document.getElementById('rate-description').textContent=selectedRate==='founder'
     ?'20% de descuento durante tus primeros 3 meses. Requiere permanecer 3 meses consecutivos.'
     :founderOfferClosed
